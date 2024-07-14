@@ -39,6 +39,15 @@ namespace Kompano.src.UI
         }
 
 
+        public void DestinationBrowseButton_Click(Object sender, RoutedEventArgs e) 
+        {
+            string selectedPath = BrowseForFolder();
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                DestinationDirectoryTextBox.Text = selectedPath;
+                App.DestinationDirectory = selectedPath;
+            }
+        }
 
         public String BrowseForFolder()
         {
@@ -55,8 +64,16 @@ namespace Kompano.src.UI
 
         }
 
+        private void SaveChangesCheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            App.SaveChanges = SaveChangesCheckBox.IsChecked ?? false;
+
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
 
 
-       
+        }
     }
 }
