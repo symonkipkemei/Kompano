@@ -59,12 +59,12 @@
     <Compile Include="src\Addin\Addin.cs" />
     <Compile Include="src\Addin\App.cs" />
     <Compile Include="src\Addin\Commands\FamilyPhotoCommand.cs" />
-	<Compile Include="src\Addin\Commands\AboutCommand.cs" />
-	<Compile Include="src\Addin\Commands\SettingsCommand.cs" />
-	<Compile Include="src\Addin\Services\ExportFunctions.cs" />
-	<Compile Include="src\Addin\Services\FamilyFunctions.cs" />
-	<Compile Include="src\Addin\Services\ViewFunctions.cs" />
-	  
+    <Compile Include="src\Addin\Commands\AboutCommand.cs" />
+    <Compile Include="src\Addin\Commands\SettingsCommand.cs" />
+    <Compile Include="src\Addin\Services\ExportFunctions.cs" />
+    <Compile Include="src\Addin\Services\FamilyFunctions.cs" />
+    <Compile Include="src\Addin\Services\FamilyPhoto.cs" />
+    <Compile Include="src\Addin\Services\ViewFunctions.cs" />
     <Compile Include="src\UI\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\Addin\Resources\" />
-    <Folder Include="src\Addin\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="src\UI\Settings.xaml">

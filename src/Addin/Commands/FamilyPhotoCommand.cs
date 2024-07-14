@@ -20,56 +20,12 @@ namespace Kompano.src.Addin.Commands
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            UIApplication uiApp = commandData.Application;
-            UIDocument uidoc = uiApp.ActiveUIDocument;
-            Document doc = uidoc.Document;
-            Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
-
-
+            
             try
             {
-                FamilyFunctions.SearchRfaFiles(App.PrimarySearchDirectory, App.CollectedFilePaths);
+                UI.Settings settingsWindow = new UI.Settings(commandData);
+                settingsWindow.ShowDialog();
 
-                if (App.CollectedFilePaths.Count != 0)
-                {
-                    foreach (string familyPath in App.CollectedFilePaths)
-                    {
-                        //Open the file
-                        Document familyDoc = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
-
-                        using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View Parameters"))
-                        {
-                            trans.Start();
-
-                            //Adjust 3D settings
-                            View3D view3D = ViewFunctions.GetOrCreate3DView(familyDoc);
-                            ViewFunctions.SetView3DSettings(uiApp, view3D);
-                            ViewFunctions.SetZoom(uiApp, view3D);
-
-                            trans.Commit();
-                        }
-                            
-
-                        // export images
-                        string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc,App.PrimarySearchDirectory);
-                        ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
-                        familyDoc.ExportImage(exportImageSettings);
-
-
-                        //close the family file
-                        bool saveChanges = App.SaveChanges;
-                        familyDoc.Close(saveChanges);
-
-                    }
-
-                }
-
-                else
-                {
-                    MessageBox.Show("No .rfa files found in primary directory");
-                    return Result.Cancelled;
-                }
-               
             }
 
             catch (Exception ex)

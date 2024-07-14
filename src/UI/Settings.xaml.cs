@@ -1,5 +1,6 @@
 ﻿using Kompano.src.Addin;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.IO.Packaging;
 using System.Linq;
@@ -15,6 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Autodesk.Revit.UI;
+using Kompano.src.Addin.Commands;
+using Kompano.src.Addin.Services;
 
 namespace Kompano.src.UI
 {
@@ -23,8 +27,11 @@ namespace Kompano.src.UI
     /// </summary>
     public partial class Settings : Window
     {
-        public Settings()
+        private readonly ExternalCommandData _commandData;
+
+        public Settings(ExternalCommandData commandData)
         {
+            _commandData = commandData;
             InitializeComponent();
         }
 
@@ -72,8 +79,23 @@ namespace Kompano.src.UI
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
+            // Validate directories
+            if (string.IsNullOrEmpty(App.PrimarySearchDirectory) || string.IsNullOrEmpty(App.DestinationDirectory))
+            {
+                System.Windows.MessageBox.Show("Please select both directories before starting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
+            try
+            {
 
+                FamilyPhoto.FamilyPhotoFunction(_commandData);
+
+            }
+            catch (Exception ex) 
+            {
+                System.Windows.MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
