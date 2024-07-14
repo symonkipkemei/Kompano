@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kompano.src.Addin.Services;
+using System.Collections.ObjectModel;
 
 namespace Kompano.src.Addin.Commands
 {
@@ -23,23 +25,46 @@ namespace Kompano.src.Addin.Commands
             Document doc = uidoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
+
             try
             {
-                string familyPath = @"C:\Users\Symon Kipkemei\Desktop\Assembly_5111-PRHS300QPRV-3_02-07-2024.rfa";
+                FamilyFunctions.SearchRfaFiles(App.PrimarySearchDirectory, App.CollectedFilePaths);
 
-                if (!File.Exists(familyPath))
+                if (App.CollectedFilePaths.Count != 0)
                 {
-                    MessageBox.Show("Family not found");
-                    return Result.Failed;
+                    foreach (string familyPath in App.CollectedFilePaths)
+                    {
+                        //Open the file
+                        Document familyDoc = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
+
+
+                        //Adjust 3D settings
+                        View3D  view3D= ViewFunctions.GetorCreate3DView(familyDoc);
+                        ViewFunctions.SetView3DSettings(uiApp, view3D);
+                        ViewFunctions.SetZoom(uiApp, view3D);
+
+                        // export images
+
+
+
+                        //close the file
+                        bool saveChanges = App.SaveChanges;
+                        familyDoc.Close(saveChanges);
+
+
+
+                    }
+
                 }
 
-                //Provides access to the family doc
-                Document familyDoc = app.OpenDocumentFile(familyPath);
+                else
+                {
+                    MessageBox.Show("No .rfa files found in primary directory");
+                    return Result.Cancelled;
+                }
+                
 
-                //Opens it in the UI interface
-                uiApp.OpenAndActivateDocument(familyPath);
 
-                MessageBox.Show("Family opened successfully");
             }
 
             catch (Exception ex)
@@ -51,7 +76,6 @@ namespace Kompano.src.Addin.Commands
 
             return Result.Succeeded;
         }
-
 
 
     }
