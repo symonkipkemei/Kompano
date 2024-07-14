@@ -16,7 +16,7 @@ namespace Kompano.src.Addin.Commands
     // Attributes
     [Transaction(TransactionMode.Manual)]
     [Regeneration(RegenerationOption.Manual)]
-    internal class OpenFamilyFileCommand : IExternalCommand
+    internal class FamilyPhotoCommand : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -44,14 +44,14 @@ namespace Kompano.src.Addin.Commands
                         ViewFunctions.SetZoom(uiApp, view3D);
 
                         // export images
+                        string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc,App.PrimarySearchDirectory);
+                        ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
+                        familyDoc.ExportImage(exportImageSettings);
 
 
-
-                        //close the file
+                        //close the family file
                         bool saveChanges = App.SaveChanges;
                         familyDoc.Close(saveChanges);
-
-
 
                     }
 
@@ -62,9 +62,7 @@ namespace Kompano.src.Addin.Commands
                     MessageBox.Show("No .rfa files found in primary directory");
                     return Result.Cancelled;
                 }
-                
-
-
+               
             }
 
             catch (Exception ex)
@@ -76,8 +74,6 @@ namespace Kompano.src.Addin.Commands
 
             return Result.Succeeded;
         }
-
-
     }
 
 }

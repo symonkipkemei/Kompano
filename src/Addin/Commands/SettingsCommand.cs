@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kompano.src.Addin.Services
+namespace Kompano.src.Addin.Commands
 {
-    internal class ExportFunctions
+    internal class SettingsCommand
     {
     }
 }
