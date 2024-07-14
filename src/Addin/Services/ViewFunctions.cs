@@ -66,8 +66,6 @@ namespace Kompano.src.Addin.Services
                     uiView.ZoomToFit();
                 }
             }
-
-          
         }
 
     }

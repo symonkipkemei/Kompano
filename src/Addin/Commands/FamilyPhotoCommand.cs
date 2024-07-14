@@ -37,11 +37,18 @@ namespace Kompano.src.Addin.Commands
                         //Open the file
                         Document familyDoc = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
 
+                        using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View Parameters"))
+                        {
+                            trans.Start();
 
-                        //Adjust 3D settings
-                        View3D  view3D= ViewFunctions.GetorCreate3DView(familyDoc);
-                        ViewFunctions.SetView3DSettings(uiApp, view3D);
-                        ViewFunctions.SetZoom(uiApp, view3D);
+                            //Adjust 3D settings
+                            View3D view3D = ViewFunctions.GetOrCreate3DView(familyDoc);
+                            ViewFunctions.SetView3DSettings(uiApp, view3D);
+                            ViewFunctions.SetZoom(uiApp, view3D);
+
+                            trans.Commit();
+                        }
+                            
 
                         // export images
                         string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc,App.PrimarySearchDirectory);
