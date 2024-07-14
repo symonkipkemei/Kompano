@@ -41,8 +41,14 @@ namespace Kompano.src.Addin.Services
 
         public static void SetView3DSettings(UIApplication uiApp, View3D view3D) 
         {
+         
             // Set view to Isometric
-            view3D.SetOrientation(new ViewOrientation3D(new XYZ(0, 0, 0), new XYZ(1, 1, 1), new XYZ(0, 0, 1)));
+            XYZ eyePosition = new XYZ(1, 1, 1); // Camera position
+            XYZ upDirection = new XYZ(0, 0, 1); // Up direction (Z-axis)
+            XYZ forwardDirection = new XYZ(-1, -1, 0); // Forward direction (must be orthogonal to upDirection)
+
+            view3D.SetOrientation(new ViewOrientation3D(eyePosition, upDirection, forwardDirection));
+
 
             // Set detail level to Fine
             view3D.get_Parameter(BuiltInParameter.VIEW_DETAIL_LEVEL).Set((int)ViewDetailLevel.Fine);

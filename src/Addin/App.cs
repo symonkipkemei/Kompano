@@ -17,5 +17,10 @@ namespace Kompano.src.Addin
 
         public static bool SaveChanges {  get; set; }
 
+
+        static App()
+        {
+            CollectedFilePaths = new ObservableCollection<string>();
+        }
     }
 }

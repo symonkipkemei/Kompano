@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Kompano.src.Addin.Services
 {
@@ -17,6 +18,18 @@ namespace Kompano.src.Addin.Services
         {
             try
             {
+                if (string.IsNullOrEmpty(directory))
+                {
+                    MessageBox.Show("Directory is null or empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (rfaFilePaths == null)
+                {
+                    MessageBox.Show("rfaFilePaths is null.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Search for .rfa files in the current directory
                 foreach (string file in Directory.GetFiles(directory, "*.rfa"))
                 {
@@ -36,7 +49,7 @@ namespace Kompano.src.Addin.Services
         }
 
 
-        public static Document OpenFamilyFile(UIApplication uiApp, Application app, string familyPath)
+        public static Document OpenFamilyFile(UIApplication uiApp, Autodesk.Revit.ApplicationServices.Application app, string familyPath)
         {
             // Open the family document
             Document familyDoc = app.OpenDocumentFile(familyPath);

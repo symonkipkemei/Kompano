@@ -19,6 +19,9 @@ namespace Kompano.src.Addin.Services
             Document doc = uidoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
+            // Clear previous file paths
+            App.CollectedFilePaths.Clear();
+
             FamilyFunctions.SearchRfaFiles(App.PrimarySearchDirectory, App.CollectedFilePaths);
 
             if (App.CollectedFilePaths.Count != 0)

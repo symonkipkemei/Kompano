@@ -94,7 +94,7 @@ namespace Kompano.src.UI
             }
             catch (Exception ex) 
             {
-                System.Windows.MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show($"Error: {ex.Message} \nStackTrace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
