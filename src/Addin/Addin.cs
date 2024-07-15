@@ -15,8 +15,8 @@ namespace Kompano.src.Addin
             // Add your initialization code here
 
             // Example button creation code to open Settings window
-            PushButtonData buttonData = new PushButtonData("SettingsButton", "Settings", Assembly.GetExecutingAssembly().Location, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
-            RibbonPanel ribbonPanel = application.CreateRibbonPanel("My Tools");
+            PushButtonData buttonData = new PushButtonData("FamilyPhoto", "FamilyPhoto", Assembly.GetExecutingAssembly().Location, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
+            RibbonPanel ribbonPanel = application.CreateRibbonPanel("Kompano");
             PushButton pushButton = ribbonPanel.AddItem(buttonData) as PushButton;
 
             return Result.Succeeded;
