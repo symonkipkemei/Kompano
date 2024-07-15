@@ -40,12 +40,10 @@ namespace Kompano.src.Addin.Services
             //XYZ eyePosition = new XYZ(1, 1, 1); // Camera position
             //XYZ upDirection = new XYZ(0, 0, 1); // Up direction (Z-axis)
             //XYZ forwardDirection = new XYZ(-1, -1, 0); // Forward direction (must be orthogonal to upDirection)
-            ViewOrientation3D currentOrientation = view3D.GetOrientation();
-            XYZ eyePosition = currentOrientation.EyePosition;
-            XYZ upDirection = currentOrientation.UpDirection;
-            XYZ forwardDirection = currentOrientation.ForwardDirection;
-
-            MessageBox.Show($"Eyeposition: {eyePosition}, Updrirection {upDirection} Forwarddirection {forwardDirection}");
+         
+            XYZ eyePosition = new XYZ(8.770906969, -3.930027723, 3.462196122);
+            XYZ upDirection = new XYZ(-0.408248290, 0.408248290, 0.816496581);
+            XYZ forwardDirection = new XYZ(-0.577350269, 0.577350269, -0.577350269);
 
             view3D.SetOrientation(new ViewOrientation3D(eyePosition, upDirection, forwardDirection));
 
@@ -69,10 +67,20 @@ namespace Kompano.src.Addin.Services
             {
                 if (uiView.ViewId.Equals(view3D.Id))
                 {
-                    Rectangle viewRectangle = uiView.GetWindowRectangle();
-                    XYZ cornerView1 = new XYZ(viewRectangle.Left, viewRectangle.Bottom, 0);
-                    XYZ cornerView2 = new XYZ(viewRectangle.Right, viewRectangle.Top, 0);
-                    uiView.ZoomAndCenterRectangle(cornerView1,cornerView2);
+                    // Get the bounding box of all elements in the view
+                    BoundingBoxXYZ boundingBox = view3D.GetSectionBox();
+                    XYZ cornerView1 = boundingBox.Min;
+                    XYZ cornerView2 = boundingBox.Max;
+
+                    // Check if the corners are valid
+                    if (!cornerView1.IsAlmostEqualTo(cornerView2))
+                    {
+                        uiView.ZoomAndCenterRectangle(cornerView1, cornerView2);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error", "Bounding box corners are not valid for zooming.");
+                    }
                 }
             }
         }
