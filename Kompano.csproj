@@ -60,7 +60,6 @@
     <Compile Include="src\Addin\App.cs" />
     <Compile Include="src\Addin\Commands\FamilyPhotoCommand.cs" />
     <Compile Include="src\Addin\Commands\AboutCommand.cs" />
-    <Compile Include="src\Addin\Commands\SettingsCommand.cs" />
     <Compile Include="src\Addin\Services\ExportFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyPhoto.cs" />

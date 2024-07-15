@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 
+
 namespace Kompano.src.Addin.Services
 {
     public static class FamilyPhoto
@@ -31,34 +32,41 @@ namespace Kompano.src.Addin.Services
                 {
                     //Open the file
                     var (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
+                    View3D view3D = ViewFunctions.Activate3DView(familyDoc);
 
                     using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View "))
                     {
                         trans.Start();
-
-                        View3D view3D = ViewFunctions.Activate3DView(familyDoc);
-                        MessageBox.Show($"{view3D.Name}");
+                
                         familyUiDoc.ActiveView = view3D;
 
                         //Allow the preview to load, delay by 30s
-                        Thread.Sleep(30000);
+                        // Thread.Sleep(30000);
 
-                        ViewFunctions.SetView3DSettings(uiApp, view3D);
-                        // ViewFunctions.SetZoom(uiApp, view3D);
+                        ViewFunctions.SetView3DSettings(view3D);
+                        
+
+                        trans.Commit();
+                    }
+                    using (Transaction trans = new Transaction(familyDoc, "Adjust Zoom "))
+                    {
+                        trans.Start();
+                        ViewFunctions.SetZoom(familyUiDoc, view3D);
 
                         trans.Commit();
                     }
 
 
-                    // export images
-                    string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.DestinationDirectory);
+
+                        // export images
+                        string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.DestinationDirectory);
                     ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
                     familyDoc.ExportImage(exportImageSettings);
 
 
                     //close the family file
                     
-                    FamilyFunctions.CloseFamilyFile(uiApp,app,familyDoc);
+                    //FamilyFunctions.CloseFamilyFile(uiApp,app,familyDoc);
                 }
 
             }
