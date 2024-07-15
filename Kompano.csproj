@@ -70,14 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="src\Addin\Resources\familyPhoto.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kompano.Addin" />
     <None Include="Readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Addin\Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="src\UI\Settings.xaml">
       <SubType>Designer</SubType>
