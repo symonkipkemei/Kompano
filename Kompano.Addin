@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Autojenzi</Name>
+		<Assembly>".\Kompano\Kompano.dll"</Assembly>
+		<AddInId>42A1C331-4698-41EB-8C56-F2037574075C</AddInId>
+		<FullClassName>Kompano.src.Addin.Addin</FullClassName>
+		<VendorId>Symon Kipkemei</VendorId>
+		<VendorDescription> symonkipkemei@gmail.com</VendorDescription>
+		<Description>Revit Family Photographer</Description>
+		<Publisher> Symon Kipkemei</Publisher>
+		<Issuer>Symon Kipkemei</Issuer>
+		<LanguageType>Managed</LanguageType>
+		<VendorURL>https://www.linkedin.com/in/symon-kipkemei/</VendorURL>
+		<Contact>symonkipkemei@gmail.com</Contact>
+
+	</AddIn>
+</RevitAddIns>
