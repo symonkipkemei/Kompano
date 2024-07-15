@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Kompano.src.Addin
 {
@@ -14,10 +15,18 @@ namespace Kompano.src.Addin
         {
             // Add your initialization code here
 
-            // Example button creation code to open Settings window
-            PushButtonData buttonData = new PushButtonData("FamilyPhoto", "FamilyPhoto", Assembly.GetExecutingAssembly().Location, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
+            // Ribbon Panel
             RibbonPanel ribbonPanel = application.CreateRibbonPanel("Kompano");
-            PushButton pushButton = ribbonPanel.AddItem(buttonData) as PushButton;
+            string assembly = Assembly.GetExecutingAssembly().Location;
+
+
+            //Button data for About command
+            PushButtonData data1 = new PushButtonData("FamilyPhoto", "FamilyPhoto", assembly, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
+            PushButton button1 = ribbonPanel.AddItem(data1) as PushButton;
+            button1.ToolTip = "Info about this tool";
+            Uri uri1 = new Uri("pack://application:,,,/Autojenzi;component/src/Addin/Resources/familyPhoto.png");
+            BitmapImage image1 = new BitmapImage(uri1);
+            button1.LargeImage = image1;
 
             return Result.Succeeded;
         }

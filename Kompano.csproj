@@ -72,6 +72,7 @@
     <Content Include=".gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Kompano.Addin" />
     <None Include="Readme.md" />
   </ItemGroup>
   <ItemGroup>
