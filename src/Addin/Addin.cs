@@ -24,7 +24,7 @@ namespace Kompano.src.Addin
             PushButtonData data1 = new PushButtonData("FamilyPhoto", "FamilyPhoto", assembly, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
             PushButton button1 = ribbonPanel.AddItem(data1) as PushButton;
             button1.ToolTip = "Info about this tool";
-            Uri uri1 = new Uri("pack://application:,,,/Autojenzi;component/src/Addin/Resources/familyPhoto.png");
+            Uri uri1 = new Uri("pack://application:,,,/Kompano;component/src/Addin/Resources/familyPhoto.png");
             BitmapImage image1 = new BitmapImage(uri1);
             button1.LargeImage = image1;
 

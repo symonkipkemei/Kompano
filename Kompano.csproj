@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="src\Addin\Resources\familyPhoto.png" />
+    <Resource Include="src\Addin\Resources\familyPhoto.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kompano.Addin" />

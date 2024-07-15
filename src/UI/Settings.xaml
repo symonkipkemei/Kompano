@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kompano.src.UI"
              mc:Ignorable="d" 
-             Title="Family Photo" Height="250" Width="350" Background="#f2f2f2"
+             Title="Family Photo" Height="300" Width="350" Background="#f2f2f2"
              ResizeMode="NoResize"
              WindowStyle="SingleBorderWindow">
     <Grid Margin="20">

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
 	<AddIn Type="Application">
-		<Name>Autojenzi</Name>
+		<Name>Kompano</Name>
 		<Assembly>".\Kompano\Kompano.dll"</Assembly>
 		<AddInId>42A1C331-4698-41EB-8C56-F2037574075C</AddInId>
 		<FullClassName>Kompano.src.Addin.Addin</FullClassName>
