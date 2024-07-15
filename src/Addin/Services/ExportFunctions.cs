@@ -15,7 +15,7 @@ namespace Kompano.src.Addin.Services
         {
             // instanitate the image exportoptions class
             ImageExportOptions export = new ImageExportOptions();
-            export.ExportRange = ExportRange.VisibleRegionOfCurrentView;
+            export.ExportRange = ExportRange.CurrentView;
 
             export.FilePath = filePath;
             export.ShadowViewsFileType = ImageFileType.JPEGMedium;

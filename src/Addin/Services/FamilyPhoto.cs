@@ -36,30 +36,17 @@ namespace Kompano.src.Addin.Services
                     familyUiDoc.ActiveView = view3D;
 
 
-                    using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View "))
+                    using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View"))
                     {
-                        trans.Start("Adjust 3D");
-              
-                        //Allow the preview to load, delay by 30s
-                        // Thread.Sleep(30000);
+                        trans.Start();
 
                         ViewFunctions.SetView3DSettings(view3D);
-                        
-
-                        trans.Commit();
-                    }
-
-                    using (Transaction trans = new Transaction(familyDoc, "Adjust Zoom "))
-                    {
-                        trans.Start("Adjust Zoom");
                         ViewFunctions.SetZoom(familyUiDoc, view3D);
 
                         trans.Commit();
                     }
 
-
-
-                   // export images
+                    // export images
                     string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.DestinationDirectory);
                     ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
                     familyDoc.ExportImage(exportImageSettings);
@@ -67,7 +54,7 @@ namespace Kompano.src.Addin.Services
 
                     //close the family file
                     
-                    //FamilyFunctions.CloseFamilyFile(uiApp,app,familyDoc);
+                    FamilyFunctions.CloseFamilyFile(uiApp,app,familyDoc);
                 }
 
             }

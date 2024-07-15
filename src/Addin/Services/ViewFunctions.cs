@@ -67,20 +67,7 @@ namespace Kompano.src.Addin.Services
             {
                 if (uiView.ViewId.Equals(view3D.Id))
                 {
-                    // Get the bounding box of all elements in the view
-                    BoundingBoxXYZ boundingBox = view3D.GetSectionBox();
-                    XYZ cornerView1 = boundingBox.Min;
-                    XYZ cornerView2 = boundingBox.Max;
-
-                    // Check if the corners are valid
-                    if (!cornerView1.IsAlmostEqualTo(cornerView2))
-                    {
-                        uiView.ZoomAndCenterRectangle(cornerView1, cornerView2);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error", "Bounding box corners are not valid for zooming.");
-                    }
+                    uiView.ZoomToFit();
                 }
             }
         }

@@ -23,7 +23,10 @@ namespace Kompano.src.Addin.Commands
             
             try
             {
+
+                FamilyFunctions.GetOpenRRevitProjectPath(commandData);
                 UI.Settings settingsWindow = new UI.Settings(commandData);
+
                 settingsWindow.ShowDialog();
 
             }

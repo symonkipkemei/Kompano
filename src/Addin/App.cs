@@ -17,6 +17,8 @@ namespace Kompano.src.Addin
 
         public static bool SaveChanges {  get; set; }
 
+        public static string OpenRevitProjectDirectory {  get; set; }
+
 
         static App()
         {
