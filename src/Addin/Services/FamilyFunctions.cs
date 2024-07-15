@@ -49,16 +49,29 @@ namespace Kompano.src.Addin.Services
         }
 
 
-        public static Document OpenFamilyFile(UIApplication uiApp, Autodesk.Revit.ApplicationServices.Application app, string familyPath)
+        public static (Document familyDoc, UIDocument familyUiDoc) OpenFamilyFile(UIApplication uiApp, Autodesk.Revit.ApplicationServices.Application app, string familyPath)
         {
             // Open the family document
             Document familyDoc = app.OpenDocumentFile(familyPath);
 
             // Switch to the family document in the Revit UI
             uiApp.OpenAndActivateDocument(familyPath);
+            UIDocument familyUiDoc = uiApp.ActiveUIDocument;
 
-            return familyDoc;
+            return (familyDoc, familyUiDoc);
         }
 
+
+        public static void CloseFamilyFile(UIApplication uiApp, Autodesk.Revit.ApplicationServices.Application app, Document familyDoc)
+        {
+
+            string watchPath = @"C:\Users\Symon Kipkemei\Desktop\Project1.rvt";
+            uiApp.OpenAndActivateDocument(watchPath);
+
+            //close the family file
+            bool saveChanges = App.SaveChanges;
+            familyDoc.Close(saveChanges);
+         
+        }
     }
 }

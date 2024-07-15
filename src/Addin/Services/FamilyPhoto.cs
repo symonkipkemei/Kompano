@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Kompano.src.Addin.Services
 {
@@ -16,7 +17,7 @@ namespace Kompano.src.Addin.Services
         {
             UIApplication uiApp = commandData.Application;
             UIDocument uidoc = uiApp.ActiveUIDocument;
-            Document doc = uidoc.Document;
+            Document activeDoc = uidoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
             // Clear previous file paths
@@ -29,31 +30,35 @@ namespace Kompano.src.Addin.Services
                 foreach (string familyPath in App.CollectedFilePaths)
                 {
                     //Open the file
-                    Document familyDoc = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
+                    var (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
 
-                    using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View Parameters"))
+                    using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View "))
                     {
                         trans.Start();
 
-                        //Adjust 3D settings
-                        View3D view3D = ViewFunctions.GetOrCreate3DView(familyDoc);
+                        View3D view3D = ViewFunctions.Activate3DView(familyDoc);
+                        MessageBox.Show($"{view3D.Name}");
+                        familyUiDoc.ActiveView = view3D;
+
+                        //Allow the preview to load, delay by 30s
+                        Thread.Sleep(30000);
+
                         ViewFunctions.SetView3DSettings(uiApp, view3D);
-                        ViewFunctions.SetZoom(uiApp, view3D);
+                        // ViewFunctions.SetZoom(uiApp, view3D);
 
                         trans.Commit();
                     }
 
 
                     // export images
-                    string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.PrimarySearchDirectory);
+                    string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.DestinationDirectory);
                     ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
                     familyDoc.ExportImage(exportImageSettings);
 
 
                     //close the family file
-                    bool saveChanges = App.SaveChanges;
-                    familyDoc.Close(saveChanges);
-
+                    
+                    FamilyFunctions.CloseFamilyFile(uiApp,app,familyDoc);
                 }
 
             }

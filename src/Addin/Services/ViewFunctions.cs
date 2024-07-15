@@ -5,39 +5,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Kompano.src.Addin.Services
 {
     public static class ViewFunctions
     {
-
-        public static View3D GetOrCreate3DView(Document doc)
+        public static View3D Activate3DView( Document doc)
         {
-            // Try to find an existing 3D view
-            FilteredElementCollector collector = new FilteredElementCollector(doc);
-            View3D view3D = collector.OfClass(typeof(View3D))
-                                     .Cast<View3D>()
-                                     .FirstOrDefault(v => !v.IsTemplate);
+            // check if the view already exists
 
-            // If no 3D view exists, create a new one
+            View3D view3D = new FilteredElementCollector(doc)
+                .OfClass(typeof(View3D))
+                .Cast<View3D>()
+                .FirstOrDefault(v => v.Name.Equals("{3D}", StringComparison.OrdinalIgnoreCase));
+
+
             if (view3D == null)
             {
-                ViewFamilyType viewFamilyType = new FilteredElementCollector(doc)
-                                                .OfClass(typeof(ViewFamilyType))
-                                                .Cast<ViewFamilyType>()
-                                                .FirstOrDefault(x => x.ViewFamily == ViewFamily.ThreeDimensional);
-
-                if (viewFamilyType != null)
-                {
-                    view3D = View3D.CreateIsometric(doc, viewFamilyType.Id);
-                }
+                MessageBox.Show("View3D is null");
             }
-
+ 
+  
             return view3D;
-
         }
 
+       
 
         public static void SetView3DSettings(UIApplication uiApp, View3D view3D) 
         {
@@ -56,7 +50,7 @@ namespace Kompano.src.Addin.Services
             // Set visual style to Consistent Colors
             view3D.get_Parameter(BuiltInParameter.MODEL_GRAPHICS_STYLE).Set(3); // 3 corresponds to Consistent Colors
 
-            // Set scale to 1:1
+            //Set scale to 1:1
             view3D.Scale = 1;
 
         }

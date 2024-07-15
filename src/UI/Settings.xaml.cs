@@ -96,6 +96,8 @@ namespace Kompano.src.UI
             {
                 System.Windows.MessageBox.Show($"Error: {ex.Message} \nStackTrace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            this.Close();
         }
     }
 }
