@@ -56,6 +56,18 @@ namespace Kompano.src.UI
             }
         }
 
+
+        private void hostFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            string selectedPath = BrowseForFile();
+            if (!string.IsNullOrEmpty(selectedPath))
+            {
+                HostFileTextBox.Text = selectedPath;
+                App.HostRevitFile = selectedPath;
+            }
+
+        }
+
         public String BrowseForFolder()
         {
             using (var dialog = new FolderBrowserDialog())
@@ -71,6 +83,23 @@ namespace Kompano.src.UI
 
         }
 
+        public String BrowseForFile()
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "Revit Files (*.rvt)|*.rvt";
+                dialog.Title = "Select a Revit File";
+
+                DialogResult result = dialog.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK && !String.IsNullOrWhiteSpace(dialog.FileName))
+                {
+                    return dialog.FileName;  // This returns the full file path
+                }
+
+                return null;
+            }
+        }
+
         private void SaveChangesCheckBox_Click(object sender, RoutedEventArgs e)
         {
             App.SaveChanges = SaveChangesCheckBox.IsChecked ?? false;
@@ -80,9 +109,9 @@ namespace Kompano.src.UI
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             // Validate directories
-            if (string.IsNullOrEmpty(App.PrimarySearchDirectory) || string.IsNullOrEmpty(App.DestinationDirectory))
+            if (string.IsNullOrEmpty(App.PrimarySearchDirectory) || string.IsNullOrEmpty(App.DestinationDirectory) || string.IsNullOrEmpty(App.HostRevitFile))
             {
-                System.Windows.MessageBox.Show("Please select both directories before starting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("Please select all directories before starting.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -90,6 +119,7 @@ namespace Kompano.src.UI
             {
 
                 FamilyPhoto.FamilyPhotoFunction(_commandData);
+               
 
             }
             catch (Exception ex) 
@@ -98,6 +128,8 @@ namespace Kompano.src.UI
             }
 
             this.Close();
+            System.Windows.MessageBox.Show("Family photo session is complete!", "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
     }
 }

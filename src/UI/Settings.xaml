@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kompano.src.UI"
              mc:Ignorable="d" 
-             Title="Family Photo" Height="300" Width="350" Background="#f2f2f2"
+             Title="Revit Family Finder" Height="350" Width="400" Background="#f2f2f2"
              ResizeMode="NoResize"
              WindowStyle="SingleBorderWindow">
-    <Grid Margin="20">
+    <Grid Margin="15">
 
 
         <!-- Define Row Definitions -->
@@ -16,29 +16,48 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <!-- Primary search directory -->
+      
+
+        <!-- Host file -->
         <Grid Grid.Row="0"  >
             <StackPanel  Orientation="Vertical" Margin="0,0,0,20">
-                <TextBlock Name="PrimarySearchDirectory" Text="Select (Revit Families) Search directory:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="0,0,0,5" />
+                <TextBlock Name="hostFile" Text="Select any Revit (.rvt) file (activates family closure):" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="0,0,0,5" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="HostFileTextBox" Width="280" Height="25" Margin="0,0,10,0" />
+                    <Button Content="Browse" Width="60" Height="25" Click="hostFileButton_Click" />
+                </StackPanel>
+
+
+            </StackPanel>
+        </Grid>
+
+
+        <!-- Primary search directory -->
+        <Grid Grid.Row="1"  >
+            <StackPanel  Orientation="Vertical" Margin="0,0,0,20">
+                <TextBlock Name="PrimarySearchDirectory" Text="Select (Revit families) search directory:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="0,0,0,5" />
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Name="PrimaryDirectoryTextBox" Width="200" Height="25" Margin="0,0,10,0" />
+                    <TextBox Name="PrimaryDirectoryTextBox" Width="280" Height="25" Margin="0,0,10,0" />
                     <Button Content="Browse" Width="60" Height="25" Click="PrimaryBrowseButton_Click" />
                 </StackPanel>
 
             </StackPanel>
         </Grid>
 
+   
+
         <!-- Destination directory -->
-        <Grid Grid.Row="1"  >
+        <Grid Grid.Row="2"  >
             <StackPanel  Orientation="Vertical" Margin="0,0,0,20">
-                <TextBlock Name="DestinationDirectory" Text="Select (FamilyPhotos) Destination directory:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="0,0,0,5" />
+                <TextBlock Name="DestinationDirectory" Text="Select (family photos) destination directory:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="0,0,0,5" />
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Name="DestinationDirectoryTextBox" Width="200" Height="25" Margin="0,0,10,0" />
+                    <TextBox Name="DestinationDirectoryTextBox" Width="280" Height="25" Margin="0,0,10,0" />
                     <Button Content="Browse" Width="60" Height="25" Click="DestinationBrowseButton_Click" />
                 </StackPanel>
 
@@ -47,7 +66,7 @@
         </Grid>
 
         <!-- Save Revit Family Changes -->
-        <Grid Grid.Row="2" >
+        <Grid Grid.Row="3" >
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <CheckBox Name="SaveChangesCheckBox" Content="Save changes to Revit family" VerticalAlignment="Center" HorizontalAlignment="Center" Click="SaveChangesCheckBox_Click" />
             </StackPanel>
@@ -55,8 +74,8 @@
         </Grid>
 
             <!-- Footer Section with Buttons -->
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Name="StartButton" Content="START" Width="310" Height="35"  Click="StartButton_Click" Background="#007ACC" Foreground="White" FontWeight="Bold"/>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="left" Margin="0,20,0,0">
+            <Button Name="StartButton" Content="START" Width="350" Height="35"  Click="StartButton_Click" Background="#007ACC" Foreground="White" FontWeight="Bold"/>
             <!-- <Button Content="CANCEL" Width="100" Height="35" Margin="5" Click="CancelButton_Click" Background="#007ACC" Foreground="White" FontWeight="Bold"/> -->
         </StackPanel>
 

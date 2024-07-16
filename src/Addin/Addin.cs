@@ -21,9 +21,9 @@ namespace Kompano.src.Addin
 
 
             //Button data for About command
-            PushButtonData data1 = new PushButtonData("FamilyPhoto", "FamilyPhoto", assembly, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
+            PushButtonData data1 = new PushButtonData("Photograph families", "Photograph RVT \n families", assembly, "Kompano.src.Addin.Commands.FamilyPhotoCommand");
             PushButton button1 = ribbonPanel.AddItem(data1) as PushButton;
-            button1.ToolTip = "Info about this tool";
+            button1.ToolTip = "Auto photograph Revit families in your directory";
             Uri uri1 = new Uri("pack://application:,,,/Kompano;component/src/Addin/Resources/familyPhoto.png");
             BitmapImage image1 = new BitmapImage(uri1);
             button1.LargeImage = image1;

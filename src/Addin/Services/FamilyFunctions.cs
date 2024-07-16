@@ -64,9 +64,9 @@ namespace Kompano.src.Addin.Services
 
         public static void CloseFamilyFile(UIApplication uiApp, Autodesk.Revit.ApplicationServices.Application app, Document familyDoc)
         {
-            if (App.OpenRevitProjectDirectory != null)
+            if (App.HostRevitFile != null)
             {
-                uiApp.OpenAndActivateDocument(App.OpenRevitProjectDirectory);
+                uiApp.OpenAndActivateDocument(App.HostRevitFile);
 
                 //close the family file
                 bool saveChanges = App.SaveChanges;
@@ -76,38 +76,5 @@ namespace Kompano.src.Addin.Services
 
         }
 
-
-        public static void GetOpenRRevitProjectPath(ExternalCommandData commandData)
-        {
-            UIApplication uiApp = commandData.Application;
-
-            // Get all open documents
-            DocumentSet openDocs = uiApp.Application.Documents;
-            var rvtDocs = openDocs.Cast<Document>().Where(d => d.PathName.EndsWith(".rvt",StringComparison.OrdinalIgnoreCase)).ToList();
-
-            
-
-            // Pick the first open document
-            Document doc = rvtDocs.Cast<Document>().FirstOrDefault();
-            MessageBox.Show($"{doc}");
-
-            if (doc != null) 
-            {
-                MessageBox.Show("No Open Projects,Please open a project .rvt file before proceeding. ");
-                return;
-            }
-
-            string projectPath = doc.PathName;
-
-            // If the project is not saved, inform the user
-            if (string.IsNullOrEmpty(projectPath))
-            {
-                MessageBox.Show("The project is not saved. Please save the project to get the path ");
-                return;
-            }
-
-            App.OpenRevitProjectDirectory= projectPath;
-
-        }
     }
 }
