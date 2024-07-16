@@ -13,6 +13,7 @@
 		<LanguageType>Managed</LanguageType>
 		<VendorURL>https://www.linkedin.com/in/symon-kipkemei/</VendorURL>
 		<Contact>symonkipkemei@gmail.com</Contact>
+		<Version>1.0.2</Version>
 
 	</AddIn>
 </RevitAddIns>

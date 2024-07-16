@@ -19,12 +19,39 @@ namespace Kompano.src.Addin.Services
             View3D view3D = new FilteredElementCollector(doc)
                 .OfClass(typeof(View3D))
                 .Cast<View3D>()
-                .FirstOrDefault(v => v.Name.Equals("{3D}", StringComparison.OrdinalIgnoreCase));
+                .FirstOrDefault(v => v.Name.Equals("Kompano", StringComparison.OrdinalIgnoreCase));
 
 
             if (view3D == null)
             {
-                MessageBox.Show("View3D is null");
+                // Get the 3D view type in the docs
+                ViewFamilyType viewFamilyType = new FilteredElementCollector(doc)
+                    .OfClass(typeof(ViewFamilyType))
+                    .Cast<ViewFamilyType>()
+                    .FirstOrDefault(x => x.ViewFamily == ViewFamily.ThreeDimensional);
+
+                if (viewFamilyType != null)
+                {
+                    using( Transaction trans = new Transaction(doc, "Create a 3D view"))
+                    {
+                        trans.Start();
+                        //Create the 3D view
+                        view3D = View3D.CreateIsometric(doc, viewFamilyType.Id);
+                        view3D.Name = "Kompano";
+
+                        trans.Commit();
+
+
+                    }
+                    
+                }
+
+                else
+                {
+                    MessageBox.Show("{3D} Could not be created. View family type 3D is missing");
+
+                }
+                
             }
  
   
