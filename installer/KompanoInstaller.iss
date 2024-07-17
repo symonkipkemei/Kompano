@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Kompano"
-#define MyAppVersion "1.0.3"
+#define MyAppVersion "1.0.4"
 #define MyAppPublisher "Symon Kipkemei"
 #define MyAppURL "https://www.linkedin.com/in/symon-kipkemei/"
 
@@ -24,9 +24,15 @@ DefaultGroupName={#MyAppName}
 ;PrivilegesRequired=lowest
 OutputDir=F:\BIMHABITAT\SOFTWARES\Kompano\installer
 OutputBaseFilename=KompanoInstaller
+SetupIconFile=F:\BIMHABITAT\SOFTWARES\Kompano\src\Addin\Resources\KompanoProfileIcon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+
+; Add the custom wizard images
+WizardImageFile=F:\BIMHABITAT\SOFTWARES\Kompano\src\Addin\Resources\WizardImage.bmp
+WizardSmallImageFile=F:\BIMHABITAT\SOFTWARES\Kompano\src\Addin\Resources\WizardSmallImage.bmp
+
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
