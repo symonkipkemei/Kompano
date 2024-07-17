@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kompano.src.UI.About"
              mc:Ignorable="d" 
-             Title="About Kompano" Height="350" Width="500" Background="#f2f2f2"
+             Title="About Kompano" Height="350" Width="520" Background="#f2f2f2"
             ResizeMode="NoResize"
             WindowStyle="SingleBorderWindow"
             Icon="/Kompano;component/src/Addin/Resources/KompanoProfileIcon.ico">
@@ -41,27 +41,28 @@
                 <Border  BorderBrush="Black" BorderThickness="0.5" Height="200" >
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <TextBlock  TextWrapping="Wrap"  Margin="5,5,5,5" >
-                            Kompano is an architect. Over time, he has realized that he has over 100 Revit families in his repositories and directories. 
-                            He hardly uses some of them, not out of choice but by circumstance.
+                            Kompano is an architect. Over time, he has realized that he has over 200 Revit families in his repositories and directories. 
+                            He hardly uses some of them, not out of choice but by circumstance. Opening each and every Revit family to check how it looks is a 
+                            tedious process that Kompano has no time for.
                             
                             <LineBreak />
                             <LineBreak />
-                            Opening each and every Revit family to check how it looks is a tedious process that Kompano has no time for. To add salt to the wound, 
-                            a client is asking for 15 isometric maisonette images to draw comparisons.
-                            Kompano cannot fathom opening each one of them individually leave alone the tedious process of exporting images. He needs quick solution.
+                            Additionally, Kompano intends to create his BIM portfolio. He has a wide array of over 120 models completed over the years to select samples from. 
+                            Kompano cannot fathom opening each one individually, 
+                            let alone the tedious process of exporting images. He needs a quick solution.
                             <LineBreak />
                             <LineBreak />
                             
                             This tool, named after Kompano, simplifies the visualization process of Revit families and projects. 
                             It auto-opens upto 100 Revit families/projects, creates stunning and consistent isometric visuals, gathers the visuals into one folder 
-                            ,and finally auto closes the files.
+                            ,and finally auto closes the files all within a timeframe of 5 minutes!
                             
                             <LineBreak />
                             <LineBreak />
                             Try it out today!
                             <LineBreak />
                             <LineBreak />
-                            Designed by: Symon Kipkemei symon@formode.ke 
+                            Designed by: Symon Kipkemei: symon@formode.ke 
                             <LineBreak />
                             https://www.formode.ke
                             <LineBreak />
