@@ -1,0 +1,27 @@
+﻿Kompano
+├── src
+│   ├── Addin
+│   │   ├── Commands
+│   │   │   ├── AboutCommand.cs
+│   │   │   └── FamilyPhotoCommand.cs
+│   │   ├── Resources
+│   │   │   ├── Familyphoto.png
+│   │   ├── Services
+│   │   │   ├── ExportFunctions.cs
+│   │   │   ├── FamilyFunctions.cs
+│   │   │   ├── FamilyPhoto.cs
+│   │   │   ├── ViewFunction.cs
+│   │   ├── Addin.cs
+│   │   └── App.cs
+│   ├── UI
+│   │   ├── Settings.xaml
+├── Properties
+│   ├── AssemblyInfo.cs
+├── installer
+│   ├── KompanoInstaller.exe
+│   ├── KompanoInstaller.iss
+├── .gitignore
+├── Kompano.addin
+├── Kompano.csproj
+├── Readme.md
+└── Kompano.sln
