@@ -64,13 +64,20 @@
     <Compile Include="src\Addin\Services\FamilyFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyPhoto.cs" />
     <Compile Include="src\Addin\Services\ViewFunctions.cs" />
-    <Compile Include="src\UI\Settings.xaml.cs">
+    <Compile Include="src\UI\About\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\UI\Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Resource Include="src\Addin\Resources\familyPhoto.png" />
+    <Resource Include="src\Addin\Resources\KompanoProfileIcon.ico" />
+    <Resource Include="src\Addin\Resources\KompanoProfileIcon.png" />
+    <Resource Include="src\Addin\Resources\KompanoProfile.png" />
+    <Content Include="ProjectTree.txt" />
+    <Resource Include="src\Addin\Resources\KompanoPhotographIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Kompano.Addin" />
@@ -78,7 +85,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="src\UI\Settings.xaml">
+    <Page Include="src\UI\About\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\UI\Settings\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
