@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Threading;
 
 
+
 namespace Kompano.src.Addin.Services
 {
     public static class FamilyPhoto
@@ -37,6 +38,11 @@ namespace Kompano.src.Addin.Services
             // flag if cancelled
             bool iscancelled = false;
 
+            // Hold error messages to be displayed later.
+            List<string> errorLog = new List<string>();
+
+
+
             ProgressHandler progressHandler = new ProgressHandler(cts);
 
             if (totalNoFiles != 0)
@@ -56,7 +62,23 @@ namespace Kompano.src.Addin.Services
                     try
                     {
                         //Open the file
-                        var (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
+
+                        Document familyDoc;
+                        UIDocument familyUiDoc;
+
+                        try
+                        {
+                            (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
+
+                        }
+
+                        catch(Exception ex)
+                        {
+                            // likely an error to do with versioning
+                            errorLog.Add($"Error opening {familyPath}: {ex.Message} \n\n");
+                            continue; //next file
+                        }
+                            
                         View3D view3D = ViewFunctions.Activate3DView(familyDoc);
                         familyUiDoc.ActiveView = view3D;
 
@@ -84,10 +106,10 @@ namespace Kompano.src.Addin.Services
 
                     catch (Exception ex) 
                     {
-                        MessageBox.Show($"Error processing {familyPath}: {ex.Message}");
+                        errorLog.Add($"Error processing {familyPath}: {ex.Message} \n\n");
                     }
 
-                    count++; //Outside try - catch statements to also count files with errors
+                    count++; //Increment count for both successful and failed files
                     int percentage = (count * 100) / totalNoFiles;
                     progressHandler.UpdateProgress(percentage);
 
@@ -95,11 +117,19 @@ namespace Kompano.src.Addin.Services
 
                 progressHandler.CloseProgressBar();
 
-                if (iscancelled == false)
+                if (!iscancelled)
                 {
-                    MessageBox.Show("Family photo session is complete!", "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+
+                    string message = "Family photo session is complete!";
+                    if (errorLog.Count > 0) 
+                    {
+                        message += $"\n {errorLog.Count} file(s) skipped due to errors:\n" + string.Join("\n", errorLog);
+                    }
+
+                    MessageBox.Show(message, "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 }
-                
 
             }
 
