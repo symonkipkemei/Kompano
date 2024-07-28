@@ -15,7 +15,13 @@ namespace Kompano.src.Addin.Services
         private ProgressWindow progressWindow;
         private Thread uiThread;
         private bool isWindowOpen = false;
+        private CancellationTokenSource cts;
 
+
+        public ProgressHandler(CancellationTokenSource cancellationTokenSource)
+        {
+            cts = cancellationTokenSource;
+        }
         public void ShowProgressBar()
         {
             uiThread = new Thread(() =>
@@ -25,6 +31,7 @@ namespace Kompano.src.Addin.Services
 
                 {
                     isWindowOpen = false; // Mark window as closed
+                    cts.Cancel();
                     Dispatcher.CurrentDispatcher.InvokeShutdown();
                 };
 

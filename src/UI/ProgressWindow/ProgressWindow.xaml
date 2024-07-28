@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Kompano.src.UI.ProgressWindow"
              Title="Progress"
-             Height="100" Width="300" WindowStartupLocation="CenterScreen">
+             Height="100" Width="300" WindowStartupLocation="CenterScreen" WindowStyle="SingleBorderWindow"
+             Icon="/Kompano;component/src/Addin/Resources/KompanoProfileIcon.ico">
     <Grid>
         <ProgressBar x:Name="progressBar" 
                      Minimum="0" 

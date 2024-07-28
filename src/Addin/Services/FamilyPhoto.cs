@@ -16,6 +16,12 @@ namespace Kompano.src.Addin.Services
     {
         public static void FamilyPhotoFunction(ExternalCommandData commandData)
         {
+
+            // cancellation token from the sub thread ( Progress Window)
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+
+            //Command data
             UIApplication uiApp = commandData.Application;
             UIDocument uidoc = uiApp.ActiveUIDocument;
             Document activeDoc = uidoc.Document;
@@ -28,7 +34,10 @@ namespace Kompano.src.Addin.Services
             int totalNoFiles = App.CollectedFilePaths.Count;
             int count = 0;
 
-            ProgressHandler progressHandler = new ProgressHandler();
+            // flag if cancelled
+            bool iscancelled = false;
+
+            ProgressHandler progressHandler = new ProgressHandler(cts);
 
             if (totalNoFiles != 0)
             {
@@ -36,6 +45,13 @@ namespace Kompano.src.Addin.Services
 
                 foreach (string familyPath in App.CollectedFilePaths)
                 {
+                    if(token.IsCancellationRequested)
+                    {
+                        MessageBox.Show("Photo session terminated by user", "Terminated", MessageBoxButton.OK,MessageBoxImage.Information);
+                        iscancelled = true;
+                        break;
+                    }
+
 
                     try
                     {
@@ -64,22 +80,26 @@ namespace Kompano.src.Addin.Services
                         //close the family file
 
                         FamilyFunctions.CloseFamilyFile(uiApp, app, familyDoc);
-
-                        count++;
-                        int percentage = (count * 100 ) / totalNoFiles;
-                        progressHandler.UpdateProgress(percentage);
-
                     }
 
                     catch (Exception ex) 
                     {
                         MessageBox.Show($"Error processing {familyPath}: {ex.Message}");
                     }
-                    
+
+                    count++; //Outside try - catch statements to also count files with errors
+                    int percentage = (count * 100) / totalNoFiles;
+                    progressHandler.UpdateProgress(percentage);
 
                 }
 
                 progressHandler.CloseProgressBar();
+
+                if (iscancelled == false)
+                {
+                    MessageBox.Show("Family photo session is complete!", "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                
 
             }
 

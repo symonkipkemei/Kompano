@@ -121,7 +121,7 @@ namespace Kompano.src.UI
                 try
                 {
                     FamilyPhoto.FamilyPhotoFunction(_commandData);
-
+                    
                 }
                 catch (Exception ex)
                 {
@@ -129,7 +129,7 @@ namespace Kompano.src.UI
                 }
             }
 
-            System.Windows.MessageBox.Show("Family photo session is complete!", "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
 
     }
