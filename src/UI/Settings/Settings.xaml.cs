@@ -115,19 +115,20 @@ namespace Kompano.src.UI
                 return;
             }
 
-            try
+            else
             {
+                this.Close();
+                try
+                {
+                    FamilyPhoto.FamilyPhotoFunction(_commandData);
 
-                FamilyPhoto.FamilyPhotoFunction(_commandData);
-               
-
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.MessageBox.Show($"Error: {ex.Message} \nStackTrace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (Exception ex) 
-            {
-                System.Windows.MessageBox.Show($"Error: {ex.Message} \nStackTrace: {ex.StackTrace}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
 
-            this.Close();
             System.Windows.MessageBox.Show("Family photo session is complete!", "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

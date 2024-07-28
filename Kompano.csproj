@@ -63,9 +63,13 @@
     <Compile Include="src\Addin\Services\ExportFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyPhoto.cs" />
+    <Compile Include="src\Addin\Services\ProgressHandler.cs" />
     <Compile Include="src\Addin\Services\ViewFunctions.cs" />
     <Compile Include="src\UI\About\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="src\UI\ProgressWindow\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="src\UI\Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
@@ -88,6 +92,10 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="src\UI\About\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\UI\ProgressWindow\ProgressWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
