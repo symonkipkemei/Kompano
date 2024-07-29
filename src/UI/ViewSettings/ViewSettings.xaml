@@ -1,0 +1,146 @@
+﻿<Window x:Class="Kompano.src.UI.ViewSettings.ViewSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kompano.src.UI.ViewSettings"
+             mc:Ignorable="d" 
+             Title="Settings" Height="680" Width="400" Background="#f2f2f2"
+             ResizeMode="NoResize"
+             WindowStyle="SingleBorderWindow"
+             Icon="/Kompano;component/src/Addin/Resources/KompanoProfileIcon.ico">
+    <Grid Margin="15">
+
+
+        <!-- Define Row Definitions -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            
+        </Grid.RowDefinitions>
+        
+        
+
+
+
+        <!-- _______________________________________Graphics Style _______________________________-->
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="0.5" Margin="0,0,0,10">
+            <StackPanel  Orientation="Vertical" Margin="0,0,0,20">
+                <TextBlock Name="tbGraphicsStyle" Text="Graphics Style" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="5,0,0,5" />
+                
+                <!-- Visual Style -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+                    <TextBlock Name="tbVisualStyle" Text="Visual Style:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
+
+                    <ComboBox  Name="cbVisualStyle"  Width="270" Height="35" 
+                        HorizontalAlignment="Right" SelectionChanged="MaterialComboBox_SelectionChanged"  Margin="5,0,5,0" Background="White" />
+                </StackPanel>
+
+                <!-- Scale -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+                    <TextBlock Name="tbScale" Text="Scale:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
+
+                    <ComboBox  Name="cbScale"  Width="270" Height="35" 
+                    HorizontalAlignment="Right" SelectionChanged="MaterialComboBox_SelectionChanged"  Margin="5,0,5,0" Background="White" />
+                </StackPanel>
+
+                <!-- Detail Level -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+                    <TextBlock Name="tbDetailLevel" Text="Detail Level:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
+
+                    <ComboBox  Name="cbDetailLevel"  Width="270" Height="35" 
+                HorizontalAlignment="Right" SelectionChanged="MaterialComboBox_SelectionChanged"  Margin="5,0,5,0" Background="White" />
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- _______________________________________Isometric 3D orientation _______________________________-->
+
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0.5" Margin="0,10,0,10">
+
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock Name="tbIsometricOrientation" Text="Isometric Orientation" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="5,0,0,5" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
+                    <!-- 3D VIEW 1 -->
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="imgOrientation1" Width="70" Height="70">
+                            <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation1.png" Stretch="Fill" />
+                        </Button>
+                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="imgOrientation2" Width="70" Height="70">
+                            <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation1.png" Stretch="Fill" />
+                        </Button>
+                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="imgOrientation3" Width="70" Height="70">
+                            <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation1.png" Stretch="Fill" />
+                        </Button>
+                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="imgOrientation4" Width="70" Height="70">
+                            <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation1.png" Stretch="Fill" />
+                        </Button>
+                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0" />
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+            
+
+        </Border>
+
+        <!-- _______________________________________Export Settings _______________________________-->
+
+        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="0.5" Margin="0,0,0,0">
+            <StackPanel  Orientation="Vertical" Margin="0,0,0,10">
+                <TextBlock Name="tbExportSettings" Text="Export Settings" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="5,0,0,5" />
+                
+
+                <!-- Raster Image Quality -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+                    <TextBlock Name="tbRasterImageQuality" Text="Image Quality" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
+
+                    <ComboBox  Name="cbRasterImageQuality"  Width="270" Height="35" 
+                 HorizontalAlignment="Right" SelectionChanged="MaterialComboBox_SelectionChanged"  Margin="5,0,5,0" Background="White" />
+                </StackPanel>
+
+                <!-- Export Range -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+                    <TextBlock Name="tbExportRange" Text="Export Range" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
+
+                    <ComboBox  Name="cbExportRange"  Width="270" Height="35" 
+                    HorizontalAlignment="Right" SelectionChanged="MaterialComboBox_SelectionChanged"  Margin="5,0,5,0" Background="White" />
+                </StackPanel>
+
+                <!-- Format -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10" HorizontalAlignment="Right">
+                    <TextBlock Name="tbFormat" Text="Image Format" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
+
+                    <ComboBox  Name="cbFormat"  Width="270" Height="35" 
+                    HorizontalAlignment="Right" SelectionChanged="MaterialComboBox_SelectionChanged"  Margin="5,0,5,0" Background="White" />
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+
+        <!-- Footer Section with Buttons -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Name="btnSave" Content="SAVE" Width="100" Height="35"  Click="StartButton_Click" Background="#f57c00" Foreground="White" FontWeight="Bold"/>
+            <!-- <Button Content="CANCEL" Width="100" Height="35" Margin="5" Click="CancelButton_Click" Background="#007ACC" Foreground="White" FontWeight="Bold"/> -->
+        </StackPanel>
+
+    </Grid>
+</Window>

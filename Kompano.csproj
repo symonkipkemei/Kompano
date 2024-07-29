@@ -60,6 +60,7 @@
     <Compile Include="src\Addin\App.cs" />
     <Compile Include="src\Addin\Commands\FamilyPhotoCommand.cs" />
     <Compile Include="src\Addin\Commands\AboutCommand.cs" />
+    <Compile Include="src\Addin\Commands\SettingsCommand.cs" />
     <Compile Include="src\Addin\Services\ExportFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyFunctions.cs" />
     <Compile Include="src\Addin\Services\FamilyPhoto.cs" />
@@ -74,9 +75,13 @@
     <Compile Include="src\UI\Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="src\UI\ViewSettings\ViewSettings.xaml.cs">
+      <DependentUpon>ViewSettings.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Resource Include="src\Addin\Resources\imgOrientation1.png" />
     <Content Include="src\Addin\Resources\WizardImage.bmp" />
     <Content Include="src\Addin\Resources\WizardSmallImage.bmp" />
     <Resource Include="src\Addin\Resources\KompanoProfileIcon.ico" />
@@ -100,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="src\UI\Settings\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="src\UI\ViewSettings\ViewSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
