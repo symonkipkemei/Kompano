@@ -75,9 +75,10 @@ namespace Kompano.src.Addin.Services
                         catch(Exception ex)
                         {
                             // likely an error to do with versioning
-                            errorLog.Add($"Error opening {familyPath}: {ex.Message} \n\n");
+                            errorLog.Add($"Error opening {familyPath}: {ex.Message}");
                             continue; //next file
                         }
+
                             
                         View3D view3D = ViewFunctions.Activate3DView(familyDoc);
                         familyUiDoc.ActiveView = view3D;
