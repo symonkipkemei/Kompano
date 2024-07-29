@@ -39,8 +39,8 @@ namespace Kompano.src.Addin.Services
             bool iscancelled = false;
 
             // Hold error messages to be displayed later.
-            List<string> errorLog = new List<string>();
-
+           
+            Dictionary<string, List<String>> errorLog = new Dictionary<string, List<string>>();
 
 
             ProgressHandler progressHandler = new ProgressHandler(cts);
@@ -91,7 +91,8 @@ namespace Kompano.src.Addin.Services
                         catch(Exception ex)
                         {
                             //error to do with 3D view type
-                            errorLog.Add($"Error processing {familyPath}: {ex.Message} \n\n");
+                            AddErrorLog(errorLog,familyPath, ex.Message);
+                            
                         }
 
                         //close the family file including those with errors
@@ -102,7 +103,7 @@ namespace Kompano.src.Addin.Services
                     catch(Exception ex)
                     {
                         //Error to do with versioning (File could not be opened
-                        errorLog.Add($"Error processing {familyPath}: {ex.Message} \n\n");
+                        AddErrorLog(errorLog, familyPath, ex.Message);
 
                     }
                     count++; //Increment count for both successful and failed files
@@ -115,10 +116,16 @@ namespace Kompano.src.Addin.Services
 
                 if (!iscancelled)
                 {
-                    string message = "Family photo session is complete!";
+                    string message = $"Family photo session is complete! {count} files processed";
                     if (errorLog.Count > 0) 
                     {
-                        message += $"\n {errorLog.Count} file(s) skipped due to errors:\n" + string.Join("\n", errorLog);
+                        message += "\n\n Some files were skipped due to errors:";
+
+                        foreach( var error in errorLog)
+                        {
+                            message += $"\n\nError: {error.Key}\nFiles: {string.Join(", ", error.Value)}";
+
+                        }
                     }
 
                     MessageBox.Show(message, "Completed", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -135,6 +142,19 @@ namespace Kompano.src.Addin.Services
             }
 
         }
+
+
+
+        public static void AddErrorLog(Dictionary<string, List<string>> errorLog, string filePath, string errorMessage)
+        {
+            if (!errorLog.ContainsKey(errorMessage)) 
+            { 
+                errorLog[errorMessage] = new List<string>();
+            }
+
+            errorLog[errorMessage].Add(filePath);
+        }
+
     }
 }
 
