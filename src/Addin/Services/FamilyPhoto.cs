@@ -41,6 +41,7 @@ namespace Kompano.src.Addin.Services
             // Hold error messages to be displayed later.
            
             Dictionary<string, List<String>> errorLog = new Dictionary<string, List<string>>();
+            List<string> warningLog = new List<string>();
 
 
             ProgressHandler progressHandler = new ProgressHandler(cts);
@@ -64,6 +65,8 @@ namespace Kompano.src.Addin.Services
                       
                         var (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
 
+                      
+                        WarningCapture warningCapture = new WarningCapture(warningLog, familyPath);
 
                         try
                         {
@@ -73,6 +76,14 @@ namespace Kompano.src.Addin.Services
 
                             using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View"))
                             {
+
+                                var failureHandlingOptions = trans.GetFailureHandlingOptions()
+                                .SetFailuresPreprocessor(warningCapture)
+                                .SetClearAfterRollback(true);
+
+                                trans.SetFailureHandlingOptions(failureHandlingOptions);
+
+
                                 trans.Start();
 
                                 ViewFunctions.SetView3DSettings(view3D);
@@ -98,6 +109,7 @@ namespace Kompano.src.Addin.Services
                         //close the family file including those with errors
 
                         FamilyFunctions.CloseFamilyFile(uiApp, app, familyDoc);
+
                     }
 
                     catch(Exception ex)
@@ -117,9 +129,17 @@ namespace Kompano.src.Addin.Services
                 if (!iscancelled)
                 {
                     string message = $"Family photo session is complete! {count} files processed";
+
+                    if (warningLog.Count > 0)
+                    {
+                        message += $"\n\nWarnings encountered:\n{string.Join("\n", warningLog)}";
+                    }
+
                     if (errorLog.Count > 0) 
                     {
-                        message += "\n\n Some files were skipped due to errors:";
+                        int errorCount = errorLog.Sum(error => error.Value.Count) ;
+                        
+                        message += $"\n\n {errorCount} file(s) were skipped due to errors:";
 
                         foreach( var error in errorLog)
                         {
@@ -153,6 +173,37 @@ namespace Kompano.src.Addin.Services
             }
 
             errorLog[errorMessage].Add(filePath);
+        }
+
+    }
+
+    public class WarningCapture : IFailuresPreprocessor
+    {
+        private readonly List<string> logMessages;
+        private readonly string filePath;
+
+        public WarningCapture(List<string> logMessages, string filePath)
+        {
+            this.logMessages = logMessages;
+            this.filePath = filePath;
+
+        }
+
+        public FailureProcessingResult PreprocessFailures (FailuresAccessor failuresAccessor)
+        {
+            //capture warnings
+            IList<FailureMessageAccessor> failureMessages = failuresAccessor.GetFailureMessages();
+            foreach (FailureMessageAccessor failureMessage in failureMessages)
+            {
+                if (failureMessage.GetSeverity() == FailureSeverity.Warning)
+                {
+                    string warningMessage = failureMessage.GetDescriptionText();
+                    logMessages.Add($"Warning for {filePath}: {warningMessage}");
+                    failuresAccessor.DeleteWarning(failureMessage); // Only delete warnings
+                }
+            }
+
+            return FailureProcessingResult.Continue;
         }
 
     }
