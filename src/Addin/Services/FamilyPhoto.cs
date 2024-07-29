@@ -61,55 +61,50 @@ namespace Kompano.src.Addin.Services
 
                     try
                     {
-                        //Open the file
+                      
+                        var (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
 
-                        Document familyDoc;
-                        UIDocument familyUiDoc;
 
                         try
                         {
-                            (familyDoc, familyUiDoc) = FamilyFunctions.OpenFamilyFile(uiApp, app, familyPath);
+                            View3D view3D = ViewFunctions.Activate3DView(familyDoc);
+                            familyUiDoc.ActiveView = view3D;
+
+
+                            using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View"))
+                            {
+                                trans.Start();
+
+                                ViewFunctions.SetView3DSettings(view3D);
+                                ViewFunctions.SetZoom(familyUiDoc, view3D);
+
+                                trans.Commit();
+                            }
+
+                            // export images
+                            string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.DestinationDirectory);
+                            ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
+                            familyDoc.ExportImage(exportImageSettings);
 
                         }
 
                         catch(Exception ex)
                         {
-                            // likely an error to do with versioning
-                            errorLog.Add($"Error opening {familyPath}: {ex.Message}");
-                            continue; //next file
+                            //error to do with 3D view type
+                            errorLog.Add($"Error processing {familyPath}: {ex.Message} \n\n");
                         }
 
-                            
-                        View3D view3D = ViewFunctions.Activate3DView(familyDoc);
-                        familyUiDoc.ActiveView = view3D;
-
-
-                        using (Transaction trans = new Transaction(familyDoc, "Adjust 3D View"))
-                        {
-                            trans.Start();
-
-                            ViewFunctions.SetView3DSettings(view3D);
-                            ViewFunctions.SetZoom(familyUiDoc, view3D);
-
-                            trans.Commit();
-                        }
-
-                        // export images
-                        string familyImagePath = ExportFunctions.GetFileImagePath(familyDoc, App.DestinationDirectory);
-                        ImageExportOptions exportImageSettings = ExportFunctions.ExportSettings(familyImagePath);
-                        familyDoc.ExportImage(exportImageSettings);
-
-
-                        //close the family file
+                        //close the family file including those with errors
 
                         FamilyFunctions.CloseFamilyFile(uiApp, app, familyDoc);
                     }
 
-                    catch (Exception ex) 
+                    catch(Exception ex)
                     {
+                        //Error to do with versioning (File could not be opened
                         errorLog.Add($"Error processing {familyPath}: {ex.Message} \n\n");
-                    }
 
+                    }
                     count++; //Increment count for both successful and failed files
                     int percentage = (count * 100) / totalNoFiles;
                     progressHandler.UpdateProgress(percentage);
@@ -120,8 +115,6 @@ namespace Kompano.src.Addin.Services
 
                 if (!iscancelled)
                 {
-                    
-
                     string message = "Family photo session is complete!";
                     if (errorLog.Count > 0) 
                     {
