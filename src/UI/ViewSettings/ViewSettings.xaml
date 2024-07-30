@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Title="Settings" Height="480" Width="650" Background="#f2f2f2"
              ResizeMode="NoResize"
-             WindowStyle="SingleBorderWindow"
+             WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
              Icon="/Kompano;component/src/Addin/Resources/KompanoProfileIcon.ico">
 
 

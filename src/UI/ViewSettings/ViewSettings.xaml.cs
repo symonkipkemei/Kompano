@@ -25,8 +25,8 @@ namespace Kompano.src.UI.ViewSettings
         {
             InitializeComponent();
             Orientation1.IsChecked = true;
-            App.SelectedOrientation = App.orientation3D[Orientation1.Name];
-            App.IsOrientationSet = true;
+            App.OrientationKey = Orientation1.Name;
+         
         }
 
         private void Orientation1_Click(object sender, RoutedEventArgs e)
@@ -34,8 +34,7 @@ namespace Kompano.src.UI.ViewSettings
             if((bool)Orientation1.IsChecked)
             {
                 UncheckOtherOrientations(Orientation1);
-                App.SelectedOrientation = App.orientation3D[Orientation1.Name];
-                App.IsOrientationSet = true;
+                App.OrientationKey = Orientation1.Name;
 
             }
             
@@ -46,9 +45,8 @@ namespace Kompano.src.UI.ViewSettings
             if ((bool)Orientation2.IsChecked)
             {
                 UncheckOtherOrientations(Orientation2);
-                App.SelectedOrientation = App.orientation3D[Orientation2.Name];
-                App.IsOrientationSet = true;
-                
+                App.OrientationKey = Orientation2.Name;
+
             }
         }
 
@@ -57,8 +55,7 @@ namespace Kompano.src.UI.ViewSettings
             if ((bool)Orientation3.IsChecked)
             {
                 UncheckOtherOrientations(Orientation3);
-                App.SelectedOrientation = App.orientation3D[Orientation3.Name];
-                App.IsOrientationSet = true;
+                App.OrientationKey = Orientation3.Name;
             }
                 
         }
@@ -68,8 +65,7 @@ namespace Kompano.src.UI.ViewSettings
             if ((bool)Orientation4.IsChecked)
             {
                 UncheckOtherOrientations(Orientation4);
-                App.SelectedOrientation = App.orientation3D[Orientation4.Name];
-                App.IsOrientationSet = true;
+                App.OrientationKey = Orientation4.Name;
             }
                 
         }
@@ -85,7 +81,6 @@ namespace Kompano.src.UI.ViewSettings
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Orientation set to: {App.SelectedOrientation}");
             this.Close();
         }
     }

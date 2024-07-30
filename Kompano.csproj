@@ -86,6 +86,7 @@
     <Resource Include="src\Addin\Resources\imgOrientation2.png" />
     <Resource Include="src\Addin\Resources\imgOrientation3.png" />
     <Resource Include="src\Addin\Resources\imgOrientation4.png" />
+    <Resource Include="src\Addin\Resources\KompanoSettingsIcon.png" />
     <Content Include="src\Addin\Resources\WizardImage.bmp" />
     <Content Include="src\Addin\Resources\WizardSmallImage.bmp" />
     <Resource Include="src\Addin\Resources\KompanoProfileIcon.ico" />

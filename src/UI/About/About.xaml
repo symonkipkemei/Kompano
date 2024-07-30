@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Title="About Kompano" Height="350" Width="520" Background="#f2f2f2"
             ResizeMode="NoResize"
-            WindowStyle="SingleBorderWindow"
+            WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"
             Icon="/Kompano;component/src/Addin/Resources/KompanoProfileIcon.ico">
 
     <Grid Margin="0">

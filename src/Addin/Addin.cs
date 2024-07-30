@@ -41,7 +41,7 @@ namespace Kompano.src.Addin
             PushButtonData data3 = new PushButtonData("settings", "Settings", assembly, "Kompano.src.Addin.Commands.SettingsCommand");
             PushButton button3 = ribbonPanel.AddItem(data3) as PushButton;
             button3.ToolTip = "Adjust settings for 3D orientation, graphics style and export settings to your preference.";
-            Uri uri3 = new Uri("pack://application:,,,/Kompano;component/src/Addin/Resources/KompanoPhotographIcon.png");
+            Uri uri3 = new Uri("pack://application:,,,/Kompano;component/src/Addin/Resources/KompanoSettingsIcon.png");
             BitmapImage image3 = new BitmapImage(uri3);
             button3.LargeImage = image3;
 
