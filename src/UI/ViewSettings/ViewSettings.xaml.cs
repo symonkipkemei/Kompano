@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kompano.src.Addin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,69 @@ namespace Kompano.src.UI.ViewSettings
         public ViewSettings()
         {
             InitializeComponent();
+            Orientation1.IsChecked = true;
+            App.SelectedOrientation = App.orientation3D[Orientation1.Name];
+            App.IsOrientationSet = true;
+        }
+
+        private void Orientation1_Click(object sender, RoutedEventArgs e)
+        {
+            if((bool)Orientation1.IsChecked)
+            {
+                UncheckOtherOrientations(Orientation1);
+                App.SelectedOrientation = App.orientation3D[Orientation1.Name];
+                App.IsOrientationSet = true;
+
+            }
+            
+        }
+
+        private void Orientation2_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)Orientation2.IsChecked)
+            {
+                UncheckOtherOrientations(Orientation2);
+                App.SelectedOrientation = App.orientation3D[Orientation2.Name];
+                App.IsOrientationSet = true;
+                
+            }
+        }
+
+        private void Orientation3_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)Orientation3.IsChecked)
+            {
+                UncheckOtherOrientations(Orientation3);
+                App.SelectedOrientation = App.orientation3D[Orientation3.Name];
+                App.IsOrientationSet = true;
+            }
+                
+        }
+
+        private void Orientation4_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)Orientation4.IsChecked)
+            {
+                UncheckOtherOrientations(Orientation4);
+                App.SelectedOrientation = App.orientation3D[Orientation4.Name];
+                App.IsOrientationSet = true;
+            }
+                
+        }
+
+
+        private void UncheckOtherOrientations(CheckBox selectedCheckBox)
+        {
+            if (selectedCheckBox != Orientation1) Orientation1.IsChecked = false;
+            if (selectedCheckBox != Orientation2) Orientation2.IsChecked = false;
+            if (selectedCheckBox != Orientation3) Orientation3.IsChecked = false;
+            if (selectedCheckBox != Orientation4) Orientation4.IsChecked = false;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"Orientation set to: {App.SelectedOrientation}");
+            this.Close();
         }
     }
 }

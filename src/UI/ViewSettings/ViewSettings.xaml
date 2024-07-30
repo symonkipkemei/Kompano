@@ -96,7 +96,7 @@
                             <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation1.png" Stretch="Fill" />
                         </Button>
 
-                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        <CheckBox Name ="Orientation1" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation1_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="15,0,15,0">
@@ -104,7 +104,7 @@
                             <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation2.png" Stretch="Fill" />
                         </Button>
 
-                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        <CheckBox Name ="Orientation2" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation2_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="15,0,15,0">
@@ -112,14 +112,14 @@
                         <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation3.png" Stretch="Fill" />
                         </Button>
 
-                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                        <CheckBox Name ="Orientation3" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation3_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="15,0,15,0">
                         <Button Name="imgOrientation4" Width="120" Height="120" Style="{StaticResource CustomButtonStyle}" >
                             <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation4.png" Stretch="Fill"  />
                         </Button>
-                        <CheckBox HorizontalAlignment="Center" Margin="0,5,0,0" />
+                        <CheckBox Name ="Orientation4" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation4_Click"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -165,7 +165,7 @@
 
         <!-- Footer Section with Buttons -->
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,5,0">
-            <Button Name="btnSave" Content="SAVE" Width="100" Height="35" Background="#f57c00" Foreground="White" FontWeight="Bold"/>
+            <Button Name="btnSave" Content="SAVE" Width="100" Height="35" Background="#f57c00" Foreground="White" FontWeight="Bold" Click="btnSave_Click"/>
             
         </StackPanel>
 

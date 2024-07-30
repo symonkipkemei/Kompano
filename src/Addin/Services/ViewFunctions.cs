@@ -67,10 +67,16 @@ namespace Kompano.src.Addin.Services
             //XYZ eyePosition = new XYZ(1, 1, 1); // Camera position
             //XYZ upDirection = new XYZ(0, 0, 1); // Up direction (Z-axis)
             //XYZ forwardDirection = new XYZ(-1, -1, 0); // Forward direction (must be orthogonal to upDirection)
-         
-            XYZ eyePosition = new XYZ(8.770906969, -3.930027723, 3.462196122);
-            XYZ upDirection = new XYZ(-0.408248290, 0.408248290, 0.816496581);
-            XYZ forwardDirection = new XYZ(-0.577350269, 0.577350269, -0.577350269);
+
+            if (!App.IsOrientationSet)
+            {
+                App.SelectedOrientation = App.orientation3D["Orientation2"];
+                
+            }
+
+            XYZ eyePosition = App.SelectedOrientation.eyePosition;
+            XYZ upDirection = App.SelectedOrientation.upDirection;
+            XYZ forwardDirection = App.SelectedOrientation.forwardDirection;
 
             view3D.SetOrientation(new ViewOrientation3D(eyePosition, upDirection, forwardDirection));
 

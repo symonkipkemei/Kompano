@@ -58,6 +58,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Addin\Addin.cs" />
     <Compile Include="src\Addin\App.cs" />
+    <Compile Include="src\Addin\Commands\ExploreCommand.cs" />
     <Compile Include="src\Addin\Commands\FamilyPhotoCommand.cs" />
     <Compile Include="src\Addin\Commands\AboutCommand.cs" />
     <Compile Include="src\Addin\Commands\SettingsCommand.cs" />
