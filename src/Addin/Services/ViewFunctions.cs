@@ -91,7 +91,7 @@ namespace Kompano.src.Addin.Services
             view3D.get_Parameter(BuiltInParameter.VIEW_DETAIL_LEVEL).Set((int)ViewDetailLevel.Fine);
 
             // Set visual style to Consistent Colors
-            view3D.DisplayStyle = DisplayStyle.FlatColors;
+            view3D.DisplayStyle = DisplayStyle.Shading;
 
             //Set scale to 1:1
             view3D.Scale = 1;
