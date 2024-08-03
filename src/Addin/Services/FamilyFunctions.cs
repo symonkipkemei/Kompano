@@ -76,5 +76,10 @@ namespace Kompano.src.Addin.Services
 
         }
 
+        public static void GetScale(Document familyDoc)
+        {
+            //select
+        }
+
     }
 }

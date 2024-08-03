@@ -22,6 +22,14 @@ namespace Kompano.src.Addin
         public static string HostRevitFile {  get; set; }
 
         public static string OrientationKey {  get; set; }
+
+        // settings for Graphics
+        public static string VisualStyle {  get; set; }
+
+        public static string Scale {  get; set; }
+
+        public static string DetailLevel { get; set; }
+
       
         static App()
         {
