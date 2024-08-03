@@ -30,6 +30,12 @@ namespace Kompano.src.Addin
 
         public static string DetailLevel { get; set; }
 
+        //Export settings
+
+        public static string ImageFormat { get; set; }
+        public static string ImageQuality { get; set; }
+        public static string ExportFormat { get; set; }
+
       
         static App()
         {

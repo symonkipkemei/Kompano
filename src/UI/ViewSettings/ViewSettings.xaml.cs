@@ -23,9 +23,13 @@ namespace Kompano.src.UI.ViewSettings
     public partial class ViewSettings : Window
     {
         public ObservableCollection<string> VisualStylesCollection {  get; set; }
-
         public ObservableCollection<string> DetailLevelCollection { get; set; }
         public ObservableCollection<string>  ScaleCollection  { get; set; }
+
+        public ObservableCollection <string> ImageQualityCollection { get; set; }
+        public ObservableCollection<string> ExportRangeCollection { get; set; }
+        public ObservableCollection<string> ImageFormatCollection { get; set; }
+
 
         public ViewSettings()
         {
@@ -33,19 +37,28 @@ namespace Kompano.src.UI.ViewSettings
             Orientation1.IsChecked = true;
             App.OrientationKey = Orientation1.Name;
 
-            //comboboxes
+            //comboboxes- Graphics style
             VisualStylesCollection = new ObservableCollection<string> { "Hidden Line", "Shaded", "Consitent Colors", "Realistic" };
             DetailLevelCollection = new ObservableCollection<string> { "Coarse", "Medium", "Fine" };
             ScaleCollection = new ObservableCollection<string> { "1:1", "1:2", "1:5", "1:10", "1:20", "1:50", "1:100", "1:200", "1:500", "1:1000" };
 
+
+            //Comboboxes - Export settings
+            ImageQualityCollection = new ObservableCollection<string> {"72", "150 ", "300", "600"};
+            ExportRangeCollection = new ObservableCollection<string> { "Current Window", "Visible Portion of Current Window" };
+            ImageFormatCollection = new ObservableCollection<string> { "JPEG", "PNG", "BMP", "TARGA", "TIFF" };
+
             DataContext = this;
 
-            // set to default
+            // set to default (Graphics)
             cbVisualStyle.SelectedItem = VisualStylesCollection[1];
             cbDetailLevel.SelectedItem = DetailLevelCollection[2];
             cbScale.SelectedItem = ScaleCollection[0];
 
-            
+            // set to default (Export settings)
+            cbExportRange.SelectedItem = ExportRangeCollection[0];
+            cbRasterImageQuality.SelectedItem = ImageQualityCollection[2];
+            cbFormat.SelectedItem = ImageFormatCollection[1];
 
         }
 
@@ -117,6 +130,21 @@ namespace Kompano.src.UI.ViewSettings
         private void cbDetailLevel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             App.DetailLevel = cbDetailLevel.SelectedItem as string;
+        }
+
+        private void cbRasterImageQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.ImageQuality = cbRasterImageQuality.SelectedItem as string;
+        }
+
+        private void cbExportRange_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.ExportFormat = cbExportRange.SelectedItem as string;
+        }
+
+        private void cbFormat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            App.ImageFormat = cbFormat.SelectedItem as string;
         }
     }
 }
