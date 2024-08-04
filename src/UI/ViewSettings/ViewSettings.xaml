@@ -164,9 +164,10 @@
 
 
         <!-- Footer Section with Buttons -->
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,5,0">
-            <Button Name="btnSave" Content="SAVE" Width="100" Height="35" Background="#f57c00" Foreground="White" FontWeight="Bold" Click="btnSave_Click"/>
-            
+        <StackPanel Grid.Row="2"  Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,5,5,0">
+            <Button Name="btnSave" Content="SAVE" Width="75" Height="25" Background="#f57c00" Foreground="White" FontWeight="Bold" Click="btnSave_Click" Margin="0,0,10,0"/>
+            <Button Name="btnReset" Content ="RESET" Width="75" Height="25" Background="#f57c00" Foreground="White" FontWeight="Bold" Click="btnReset_Click" Margin="0,0,10,0" />
+            <Button Name="btnCancel" Content ="CANCEL" Width="75" Height="25" Background="#f57c00" Foreground="White" FontWeight="Bold" Click="btnCancel_Click" Margin="0,0,10,0" />
         </StackPanel>
 
     </Grid>

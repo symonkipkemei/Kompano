@@ -12,12 +12,12 @@ namespace Kompano.src.Addin
 {
     public static class App
     {
-        public static ObservableCollection<string> CollectedFilePaths {  get; set; }
-        public static string PrimarySearchDirectory {  get; set; }
-        public static string DestinationDirectory { get; set;}
-        public static bool SaveChanges {  get; set; }
-        public static string HostRevitFile {  get; set; }
-        public static string OrientationKey {  get; set; }
+        public static ObservableCollection<string> CollectedFilePaths { get; set; }
+        public static string PrimarySearchDirectory { get; set; }
+        public static string DestinationDirectory { get; set; }
+        public static bool SaveChanges { get; set; }
+        public static string HostRevitFile { get; set; }
+        public static string OrientationKey { get; set; }
 
         // settings for Graphics & Export
         public static DisplayStyle SelectedDisplayStyle => CollectionDisplayStyles[UserDisplayStyle];
@@ -29,13 +29,13 @@ namespace Kompano.src.Addin
         public static (XYZ eyePosition, XYZ upDirection, XYZ forwardDirection) SelectedOrientation3D => CollectionOrientation3D[UserOrientation3D];
 
         // User Selection stored when saved
-        public static string UserDisplayStyle {  get; set; }
+        public static string UserDisplayStyle { get; set; }
         public static string UserViewDetailLevel { get; set; }
         public static string UserScale { get; set; }
         public static string UserImageFileType { get; set; }
         public static string UserImageResolution { get; set; }
-        public static string UserExportRange {  get; set; }
-        public static string UserOrientation3D {  get; set; }
+        public static string UserExportRange { get; set; }
+        public static string UserOrientation3D { get; set; }
 
         //Collections
         public static Dictionary<string, DisplayStyle> CollectionDisplayStyles { get; set; }
@@ -104,7 +104,7 @@ namespace Kompano.src.Addin
 
             // 3D orientations
 
-             CollectionOrientation3D = new Dictionary<string, (XYZ eyePosition, XYZ upDirection, XYZ forwardDirection)>
+            CollectionOrientation3D = new Dictionary<string, (XYZ eyePosition, XYZ upDirection, XYZ forwardDirection)>
 
             {   //Orientation Numbered from Front Isometric- Anticlockwise ( Front,Rights, Back, Left)
                 {"Orientation1", (new XYZ(8.261403115, -3.573411012, 3.164970061), new XYZ(-0.408248290, 0.408248290, 0.816496581), new XYZ(-0.577350269, 0.577350269, -0.577350269)) },
@@ -114,7 +114,12 @@ namespace Kompano.src.Addin
 
             };
 
+            SetDefaultSettings();
 
+        }
+
+        public static void SetDefaultSettings()
+        {
             // Default Options set/saved
             UserDisplayStyle = CollectionDisplayStyles.Keys.ToList()[2];
             UserScale = CollectionScaleOptions.Keys.ToList()[0];
@@ -124,6 +129,6 @@ namespace Kompano.src.Addin
             UserImageResolution = CollectionImageResolutions.Keys.ToList()[2];
             UserOrientation3D = CollectionOrientation3D.Keys.ToList()[0];
         }
-    }
 
+    }
 }

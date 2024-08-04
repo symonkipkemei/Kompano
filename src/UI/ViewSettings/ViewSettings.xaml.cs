@@ -73,7 +73,6 @@ namespace Kompano.src.UI.ViewSettings
             if (sender is CheckBox checkBox && checkBox.IsChecked == true)
             {
                 UncheckOtherOrientations(checkBox);
-                App.OrientationKey = checkBox.Name;
             }
         }
 
@@ -86,18 +85,7 @@ namespace Kompano.src.UI.ViewSettings
             if (selectedCheckBox != Orientation4) Orientation4.IsChecked = false;
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            App.UserDisplayStyle = cbVisualStyle.SelectedItem as string;
-            App.UserScale = cbScale.SelectedItem as string;
-            App.UserViewDetailLevel = cbDetailLevel.SelectedItem as string;
-            App.UserExportRange = cbExportRange.SelectedItem as string;
-            App.UserImageFileType = cbFormat.SelectedItem as string;
-            App.UserImageResolution = cbRasterImageQuality.SelectedItem as string;
-            App.UserOrientation3D = SelectCheckedOrientationBox();
-
-            this.Close();
-        }
+        
 
         public void SetDefaultCheckBox(string orientationName)
         {
@@ -113,5 +101,28 @@ namespace Kompano.src.UI.ViewSettings
             else { return null; }
         }
 
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            App.UserDisplayStyle = cbVisualStyle.SelectedItem as string;
+            App.UserScale = cbScale.SelectedItem as string;
+            App.UserViewDetailLevel = cbDetailLevel.SelectedItem as string;
+            App.UserExportRange = cbExportRange.SelectedItem as string;
+            App.UserImageFileType = cbFormat.SelectedItem as string;
+            App.UserImageResolution = cbRasterImageQuality.SelectedItem as string;
+            App.UserOrientation3D = SelectCheckedOrientationBox();
+            this.Close();
+        }
+
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+            App.SetDefaultSettings();
+            this.Close();
+        }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
