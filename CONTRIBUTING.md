@@ -2,7 +2,7 @@
 
 #### Contributions are more than welcome! Please work in the dev branch to do so:
 
-- Create or update your own fork of SnapMe under your GitHub account.
+- Create or update your own fork of Kompano under your GitHub account.
 - Checkout to the ``dev`` branch.
 - In the dev branch, implement and test you changes specific to the feature.
 - Build the project and make sure everything works.

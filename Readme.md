@@ -14,7 +14,8 @@
 alt="follow on Twitter"></a>
 
 
-![Sample](src/Addin/Resources/Sample.JPG)
+
+![Sample](src/Addin/Resources/Kompano.gif)
 
 ***Photograph your Revit Families/Projects with ease.***
 
@@ -38,12 +39,10 @@ This tool, named after Kompano, simplifies the visualization process of Revit fa
 - Auto Adjust the 3D orientation to maintain consistency.
 - Auto export the images in high resolution to your preferred directory.
 - Auto close revit families/projects.
-
+- Settings command to adjust views settings to user's preference
 
 ## 📦 Future updates will include:
-
-- Settings command to adjust views to user's preference
-- Graphic styles options to select  from.
+- Custom Graphic styles options to select from such as blue print effect, black and white Effect, white clay render
 - Accommodate revit files.
 
 
@@ -51,11 +50,15 @@ This tool, named after Kompano, simplifies the visualization process of Revit fa
 
 Below is a illustration on how the tool works. Enjoy!
 1. Navigate to the Add-ins tab and click on "Kompano".
-3. Follow the on-screen prompt and fil up all directories
-4. Click the start buton to initiate the process.
+2. Adjust your graphics and export settings to your preference using the settings Command
+3. Follow the on-screen prompt and fill up all directories as instructed.
+4. Click the start button to initiate the process.
+5. Track the progress with a progress bar.
+6. Check your desitination directory for the final photos
+
 
 ![partA](src/Addin/Resources/partA.png)
-
+![partA](src/Addin/Resources/partB.png)
 
 
 ## ⚙️ Installation
@@ -73,14 +76,14 @@ Below is a illustration on how the tool works. Enjoy!
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [License](License.md) file for full details.
 
-Credit to [icons8.com](https://icons8.com) for the SnapMe icons.
+Credit to [icons8.com](https://icons8.com) for the Kompano icons.
 
 © 2024 Autodesk, Inc.  All rights reserved. All use of this Software is subject to the terms and conditions of the Autodesk End User License Agreement accepted upon installation of this Software and/or packaged with the Software.
 
 
 ## 🍚 Contribute
 
-**Autojenzi** is an open-source project. You can make suggestions or track and submit bugs via Github [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue). You can submit your own code to the **Autojenzi** project via a Github [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
+**Kompano** is an open-source project. You can make suggestions or track and submit bugs via Github [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue). You can submit your own code to the **Kompano** project via a Github [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests).
 
 Feel free to contribute!
 Please refer to the [CONTRIBUTING](CONTRIBUTING.md) for details.
