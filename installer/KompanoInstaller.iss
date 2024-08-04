@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Kompano"
-#define MyAppVersion "1.0.5"
+#define MyAppVersion "1.1.5"
 #define MyAppPublisher "Symon Kipkemei"
 #define MyAppURL "https://www.linkedin.com/in/symon-kipkemei/"
 
