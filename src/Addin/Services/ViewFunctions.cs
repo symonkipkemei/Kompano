@@ -88,14 +88,9 @@ namespace Kompano.src.Addin.Services
 
 
             // Set detail level to Fine
-            view3D.get_Parameter(BuiltInParameter.VIEW_DETAIL_LEVEL).Set((int)ViewDetailLevel.Fine);
-
-            // Set visual style to Consistent Colors
-            view3D.DisplayStyle = DisplayStyle.Shading;
-
-            //Set scale to 1:1
-            view3D.Scale = 1;
-
+            view3D.DetailLevel = App.SelectedViewDetailLevel;
+            view3D.DisplayStyle = App.SelectedDisplayStyle;
+            view3D.Scale = App.SelectedScale;
         }
 
         public static void SetZoom(UIDocument familyUiDoc, View3D view3D)

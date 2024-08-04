@@ -14,13 +14,12 @@ namespace Kompano.src.Addin.Services
         public static ImageExportOptions ExportSettings(string filePath)
         {
             // instanitate the image exportoptions class
-            ImageExportOptions export = new ImageExportOptions();
-            export.ExportRange = ExportRange.CurrentView;
-
+            ImageExportOptions export = new ImageExportOptions();   
+            export.ExportRange = App.SelectedExportRange;
             export.FilePath = filePath;
-            export.ShadowViewsFileType = ImageFileType.JPEGMedium;
-            export.HLRandWFViewsFileType = ImageFileType.JPEGMedium;
-            export.ImageResolution = ImageResolution.DPI_300;
+            export.ShadowViewsFileType = App.SelectedImageFileType;
+            export.HLRandWFViewsFileType = App.SelectedImageFileType;
+            export.ImageResolution = App.SelectedImageResolution;
             export.ZoomType = ZoomFitType.Zoom;
             export.Zoom = 100;
 
