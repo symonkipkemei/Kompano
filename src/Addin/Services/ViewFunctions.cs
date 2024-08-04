@@ -64,25 +64,9 @@ namespace Kompano.src.Addin.Services
         public static void SetView3DSettings( View3D view3D) 
         {
 
-            // Set view to Isometric
-            //XYZ eyePosition = new XYZ(1, 1, 1); // Camera position
-            //XYZ upDirection = new XYZ(0, 0, 1); // Up direction (Z-axis)
-            //XYZ forwardDirection = new XYZ(-1, -1, 0); // Forward direction (must be orthogonal to upDirection)
-
-
-            Dictionary<string, (XYZ eyePosition, XYZ upDirection, XYZ forwardDirection)>  orientation3D = new Dictionary<string, (XYZ eyePosition, XYZ upDirection, XYZ forwardDirection)>();
-
-            orientation3D["Orientation1"] = (new XYZ(8.261403115, -3.573411012, 3.164970061), new XYZ(-0.408248290, 0.408248290, 0.816496581), new XYZ(-0.577350269, 0.577350269, -0.577350269));
-            orientation3D["Orientation2"] = (new XYZ(8.261403115, 3.364421511, 3.164970061), new XYZ(-0.408248290, -0.408248290, 0.816496581), new XYZ(-0.577350269, -0.577350269, -0.577350269));
-            orientation3D["Orientation3"] = (new XYZ(1.323570591, 3.364421511, 3.164970061), new XYZ(0.408248290, -0.408248290, 0.816496581), new XYZ(0.577350269, -0.577350269, -0.577350269));
-            orientation3D["Orientation4"] = (new XYZ(1.323570591, -3.573411012, 3.164970061), new XYZ(0.408248290, 0.408248290, 0.816496581), new XYZ(0.577350269, 0.577350269, -0.577350269));
-
- 
-            (XYZ eyePosition, XYZ upDirection, XYZ forwardDirection)  selectedOrientation = orientation3D[App.OrientationKey ?? "Orientation1"];
-
-            XYZ eyePosition = selectedOrientation.eyePosition;
-            XYZ upDirection = selectedOrientation.upDirection;
-            XYZ forwardDirection = selectedOrientation.forwardDirection;
+            XYZ eyePosition = App.SelectedOrientation3D.eyePosition;
+            XYZ upDirection = App.SelectedOrientation3D.upDirection;
+            XYZ forwardDirection = App.SelectedOrientation3D.forwardDirection;
 
             view3D.SetOrientation(new ViewOrientation3D(eyePosition, upDirection, forwardDirection));
 

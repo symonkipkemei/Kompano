@@ -31,80 +31,50 @@ namespace Kompano.src.UI.ViewSettings
         public ObservableCollection<string> ExportRangeCollection { get; set; }
         public ObservableCollection<string> ImageFormatCollection { get; set; }
 
+        List<CheckBox> CheckBoxList = new List<CheckBox> {  };
+
 
         public ViewSettings()
         {
             InitializeComponent();
 
-            
+            //checkBox List
+            CheckBoxList.AddRange(new List<CheckBox> { Orientation1, Orientation2, Orientation3, Orientation4 });
 
             //Comboboxes - Graphics Item source items
-            VisualStylesCollection = new ObservableCollection<string> (App.DisplayStyles.Keys);
-            ViewDetailLevelCollection = new ObservableCollection<string> (App.ViewDetailLevels.Keys);
-            ScaleCollection = new ObservableCollection<string> (App.ScaleOptions.Keys);
+            VisualStylesCollection = new ObservableCollection<string> (App.CollectionDisplayStyles.Keys);
+            ViewDetailLevelCollection = new ObservableCollection<string> (App.CollectionViewDetailLevels.Keys);
+            ScaleCollection = new ObservableCollection<string> (App.CollectionScaleOptions.Keys);
 
 
             //Comboboxes - Export Item source items
-            ImageQualityCollection = new ObservableCollection<string> (App.ImageResolutions.Keys);
-            ExportRangeCollection = new ObservableCollection<string>(App.ExportRanges.Keys);
-            ImageFormatCollection = new ObservableCollection<string> (App.ImageTypes.Keys);
+            ImageQualityCollection = new ObservableCollection<string> (App.CollectionImageResolutions.Keys);
+            ExportRangeCollection = new ObservableCollection<string>(App.CollectionExportRanges.Keys);
+            ImageFormatCollection = new ObservableCollection<string> (App.CollectionImageTypes.Keys);
 
             DataContext = this;
 
             // set to default (Graphics)
-            cbVisualStyle.SelectedItem = VisualStylesCollection[2];
-            cbDetailLevel.SelectedItem = ViewDetailLevelCollection[2];
-            cbScale.SelectedItem = ScaleCollection[0];
+            cbVisualStyle.SelectedItem = App.UserDisplayStyle;
+            cbDetailLevel.SelectedItem = App.UserViewDetailLevel;
+            cbScale.SelectedItem = App.UserScale;
 
             // set to default (Export settings)
-            cbExportRange.SelectedItem = ExportRangeCollection[0];
-            cbRasterImageQuality.SelectedItem = ImageQualityCollection[2];
-            cbFormat.SelectedItem = ImageFormatCollection[4];
+            cbExportRange.SelectedItem = App.UserExportRange;
+            cbRasterImageQuality.SelectedItem = App.UserImageResolution;
+            cbFormat.SelectedItem = App.UserImageFileType;
 
             // Set to default (Isometric 3D orientation)
-            Orientation1.IsChecked = true;
-            App.OrientationKey = Orientation1.Name;
+            SetDefaultCheckBox(App.UserOrientation3D);
         }
 
-        private void Orientation1_Click(object sender, RoutedEventArgs e)
+        public void Orientation_Click(object sender, RoutedEventArgs e)
         {
-            if((bool)Orientation1.IsChecked)
+            if (sender is CheckBox checkBox && checkBox.IsChecked == true)
             {
-                UncheckOtherOrientations(Orientation1);
-                App.OrientationKey = Orientation1.Name;
-
+                UncheckOtherOrientations(checkBox);
+                App.OrientationKey = checkBox.Name;
             }
-            
-        }
-
-        private void Orientation2_Click(object sender, RoutedEventArgs e)
-        {
-            if ((bool)Orientation2.IsChecked)
-            {
-                UncheckOtherOrientations(Orientation2);
-                App.OrientationKey = Orientation2.Name;
-
-            }
-        }
-
-        private void Orientation3_Click(object sender, RoutedEventArgs e)
-        {
-            if ((bool)Orientation3.IsChecked)
-            {
-                UncheckOtherOrientations(Orientation3);
-                App.OrientationKey = Orientation3.Name;
-            }
-                
-        }
-
-        private void Orientation4_Click(object sender, RoutedEventArgs e)
-        {
-            if ((bool)Orientation4.IsChecked)
-            {
-                UncheckOtherOrientations(Orientation4);
-                App.OrientationKey = Orientation4.Name;
-            }
-                
         }
 
 
@@ -118,37 +88,30 @@ namespace Kompano.src.UI.ViewSettings
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            App.UserDisplayStyle = cbVisualStyle.SelectedItem as string;
+            App.UserScale = cbScale.SelectedItem as string;
+            App.UserViewDetailLevel = cbDetailLevel.SelectedItem as string;
+            App.UserExportRange = cbExportRange.SelectedItem as string;
+            App.UserImageFileType = cbFormat.SelectedItem as string;
+            App.UserImageResolution = cbRasterImageQuality.SelectedItem as string;
+            App.UserOrientation3D = SelectCheckedOrientationBox();
+
             this.Close();
         }
 
-        private void cbVisualStyle_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void SetDefaultCheckBox(string orientationName)
         {
-            App.SelectedDisplayStyle = App.DisplayStyles[cbVisualStyle.SelectedItem as string];
+            CheckBox selectedCheckBox = CheckBoxList.FirstOrDefault(x => x.Name == orientationName);
+            if (selectedCheckBox != null) { selectedCheckBox.IsChecked = true; }
+         
         }
 
-        private void cbScale_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public string SelectCheckedOrientationBox()
         {
-            App.SelectedScale = App.ScaleOptions[cbScale.SelectedItem as string];
+            CheckBox selectedCheckBox = CheckBoxList.FirstOrDefault(x => x.IsChecked == true);
+            if (selectedCheckBox != null) { return selectedCheckBox.Name; }
+            else { return null; }
         }
 
-        private void cbDetailLevel_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            App.SelectedViewDetailLevel = App.ViewDetailLevels[cbDetailLevel.SelectedItem as string];
-        }
-
-        private void cbRasterImageQuality_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            App.SelectedImageResolution = App.ImageResolutions[cbRasterImageQuality.SelectedItem as string];
-        }
-
-        private void cbExportRange_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            App.SelectedExportRange = App.ExportRanges[cbExportRange.SelectedItem as string];
-        }
-
-        private void cbFormat_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            App.SelectedImageFileType = App.ImageTypes[cbFormat.SelectedItem as string];
-        }
     }
 }

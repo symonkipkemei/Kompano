@@ -59,7 +59,7 @@
                     <TextBlock Name="tbVisualStyle" Text="Visual Style:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
 
                     <ComboBox  Name="cbVisualStyle"  Width="180" Height="30" ItemsSource="{Binding VisualStylesCollection}"
-                        HorizontalAlignment="Right"  Margin="5,0,5,0" Background="White" SelectionChanged="cbVisualStyle_SelectionChanged"/>
+                        HorizontalAlignment="Right"  Margin="5,0,5,0" Background="White" />
                 </StackPanel>
 
                 <!-- Scale -->
@@ -67,7 +67,7 @@
                     <TextBlock Name="tbScale" Text="Scale:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
 
                     <ComboBox  Name="cbScale"  Width="180" Height="30" ItemsSource="{Binding ScaleCollection}"
-                    HorizontalAlignment="Right"  Margin="5,0,5,0" Background="White" SelectionChanged="cbScale_SelectionChanged" />
+                    HorizontalAlignment="Right"  Margin="5,0,5,0" Background="White"  />
                 </StackPanel>
 
                 <!-- Detail Level -->
@@ -75,7 +75,7 @@
                     <TextBlock Name="tbDetailLevel" Text="Detail Level:" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
 
                     <ComboBox  Name="cbDetailLevel"  Width="180" Height="30" ItemsSource="{Binding ViewDetailLevelCollection}"
-                HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White" SelectionChanged="cbDetailLevel_SelectionChanged" />
+                HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White"  />
                 </StackPanel>
 
             </StackPanel>
@@ -96,7 +96,7 @@
                             <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation1.png" Stretch="Fill" />
                         </Button>
 
-                        <CheckBox Name ="Orientation1" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation1_Click"/>
+                        <CheckBox Name ="Orientation1" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="15,0,15,0">
@@ -104,7 +104,7 @@
                             <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation2.png" Stretch="Fill" />
                         </Button>
 
-                        <CheckBox Name ="Orientation2" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation2_Click"/>
+                        <CheckBox Name ="Orientation2" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="15,0,15,0">
@@ -112,14 +112,14 @@
                         <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation3.png" Stretch="Fill" />
                         </Button>
 
-                        <CheckBox Name ="Orientation3" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation3_Click"/>
+                        <CheckBox Name ="Orientation3" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation_Click"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Vertical" Margin="15,0,15,0">
                         <Button Name="imgOrientation4" Width="120" Height="120" Style="{StaticResource CustomButtonStyle}" >
                             <Image Source="/Kompano;component/src/Addin/Resources/imgOrientation4.png" Stretch="Fill"  />
                         </Button>
-                        <CheckBox Name ="Orientation4" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation4_Click"/>
+                        <CheckBox Name ="Orientation4" HorizontalAlignment="Center" Margin="0,5,0,0" Click="Orientation_Click"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -140,7 +140,7 @@
                     <TextBlock Name="tbRasterImageQuality" Text="Image Quality" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
 
                     <ComboBox  Name="cbRasterImageQuality"  Width="180" Height="30" ItemsSource="{Binding ImageQualityCollection}"
-                 HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White" SelectionChanged="cbRasterImageQuality_SelectionChanged" />
+                 HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White"  />
                 </StackPanel>
 
                 <!-- Export Range -->
@@ -148,7 +148,7 @@
                     <TextBlock Name="tbExportRange" Text="Export Range" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
 
                     <ComboBox  Name="cbExportRange"  Width="180" Height="30" ItemsSource="{Binding ExportRangeCollection}"
-                    HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White" SelectionChanged="cbExportRange_SelectionChanged" />
+                    HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White"  />
                 </StackPanel>
 
                 <!-- Format -->
@@ -156,7 +156,7 @@
                     <TextBlock Name="tbFormat" Text="Image Format" FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Left" IsHitTestVisible="False" Margin="10,0,0,5" />
 
                     <ComboBox  Name="cbFormat"  Width="180" Height="30" ItemsSource="{Binding ImageFormatCollection}"
-                    HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White" SelectionChanged="cbFormat_SelectionChanged" />
+                    HorizontalAlignment="Right"   Margin="5,0,5,0" Background="White"  />
                 </StackPanel>
 
             </StackPanel>
